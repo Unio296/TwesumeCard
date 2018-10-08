@@ -1,0 +1,38 @@
+<div class="py-3 text-center">
+  <div class="container">
+    <div class="row">
+      <div class="mx-auto p-4 col-lg-7">
+        <h1 class="mb-4">お問い合わせ内容確認</h1>
+          <%= form_for @contact, url: contact_thanks_path do |f| %>
+          <div class="text-left d-flex flex-wrap">
+            <div class="w-25">
+              <%= f.label :name %>
+            </div>
+            <div class="w-75">
+              <%= f.hidden_field :name, class: 'form-control' %>
+              <%= @contact.name %>
+            </div>
+            <div class="w-25">
+              <%= f.label :email %>
+            </div>
+            <div class="w-75">
+              <%= f.hidden_field :email, class: 'form-control' %>
+              <%= @contact.email %>
+            </div>
+            <div class="w-25">
+              <%= f.label :message %>
+            </div>
+            <div class="w-75" style="word-wrap:break-word;">
+              <%= f.hidden_field :message, class: 'form-control' %>
+              <%= @contact.message %>
+            </div>
+          </div>
+            <%= button_tag type:"submit", class: 'btn btn-primary mt-4 mb-3' do %>
+              <%= fa_icon 'envelope', text: 'SEND' %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
