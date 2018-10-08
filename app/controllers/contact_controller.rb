@@ -18,6 +18,7 @@ class ContactController < ApplicationController
     # メール送信
     @contact = Contact.new(contact_params)
     ContactMailer.received_email(@contact).deliver
+    
   end
 
   private

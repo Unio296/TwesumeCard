@@ -1,6 +1,6 @@
 class ContactMailer < ActionMailer::Base
   
-  default from: "info@独自ドメイン"
+  default from: "info@twesumecard.herokuapp.com"
   default to: "unioblog@gmail.com"
 
   def received_email(contact)
