@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id                                       #cookiesをクライアントに保存
     flash[:success] = "ユーザー認証が完了しました。"
     redirect_back_or user_url(user.nickname)
-    #redirect_to user_url(user.nickname)
   end
 
   #ユーザログアウト時にsession削除

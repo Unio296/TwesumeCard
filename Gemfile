@@ -33,6 +33,7 @@ gem 'carrierwave'
 gem 'mini_magick', '~> 4.8'
 
 # twitter認証
+gem 'omniauth'
 gem 'omniauth-twitter'
 
 #reCAPTHCA導入

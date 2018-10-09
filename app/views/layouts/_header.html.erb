@@ -1,4 +1,4 @@
-    <nav class="navbar navbar-expand-md bg-primary navbar-dark mb-4" >
+    <nav class="navbar navbar-expand-md bg-primary navbar-dark" >
       <div class="container">
         <%= link_to 'TWESUME CARD', root_path, class: 'navbar-brand' %>
 
@@ -7,18 +7,27 @@
         </button>
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbarPrimaryContent">
           <ul class="navbar-nav">
+            <% if logged_in? %>
+
             <li class="nav-item mx-1">
-              <a class="nav-link align-items-center d-flex" href="#">
-                <i class="now-ui-icons objects_globe x2 mr-2"></i> USERNAME</a>
+              <%= link_to user_path(current_user.nickname), class:"nav-link align-items-center d-flex" do %>
+                <%= fa_icon "user_circle",text: current_user.nickname %>
+              <% end %>
             </li>
+
             <li class="nav-item mx-1">
-              <a class="nav-link align-items-center d-flex" href="#">
-                <i class="now-ui-icons users_circle-08 x2 mr-2"></i>&nbsp;PROFILE</a>
+              <%= link_to logout_path, class:"nav-link align-items-center d-flex" do %>
+                <%= fa_icon "sign-out-alt",text: 'ログアウト' %>
+              <% end %>
             </li>
+
+            <% else %>
             <li class="nav-item mx-1">
-              <a class="nav-link align-items-center d-flex" href="#">
-                <i class="now-ui-icons ui-1_settings-gear-63 x2 mr-2"></i>&nbsp;SETTINGS</a>
+              <%= link_to 'auth/twitter', class:"nav-link" do %>
+                <%= fa_icon 'twitter', text:" ログイン" %>
+              <% end %>
             </li>
+            <% end %>
           </ul>
         </div>
       </div>

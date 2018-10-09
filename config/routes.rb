@@ -10,10 +10,13 @@ Rails.application.routes.draw do
   post '/contact/thanks', to: 'contact#thanks'     # 送信完了画面
 
   # twitter認証
-  get '/auth/:provider/callback', to: 'sessions#create', as: 'auth_login'
+  get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
   #App Routes
-  resources :users, param: :nickname, only:[:new, :show, :destroy]
+  resources :users, param: :nickname, only:[:new, :show, :destroy] do
+    resources :resumes do
+    end
+  end
   
 end
