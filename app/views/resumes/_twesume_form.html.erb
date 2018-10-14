@@ -1,13 +1,13 @@
 <%# :page_heading 見出し %>
 <%# :url フォーム送信先URL %>
 <%# :button_text submitボタンのテキスト%>
-
+<%= form_for @resume, url: yield(:url) do |f| %>
 <div class="py-3">
   <div class="container">
   <h2 class="mb-4 text-center"><%= yield(:page_heading) %></h2>
     <div class="row">
       <div class="p-4 col-lg-5">
-        <%= form_for @resume, url: yield(:url) do |f| %>
+
           <% if @resume.errors.any? %>
             <div class="alert alert-danger" role="alert">
               <strong>入力内容にエラーがあります</strong>
@@ -39,10 +39,6 @@
           <%= f.label :note, 'その他' %>
           <%= f.text_area :note, class: 'form-control mb-2', rows: '10', placeholder: 'その他要望、追記事項等あれば...' %>
 
-          <%= button_tag type:"submit", class: 'btn btn-primary mt-4 mb-3' do %>
-            <%= fa_icon 'envelope', text: yield(:button_text) %>
-          <% end %>
-        <% end %>
       </div>
       
       <div class="p-4 col-lg-7">  <%# twesume %>
@@ -85,9 +81,34 @@
 </div>
 
 
+<!-- 切り替えボタンの設定 -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="createImage()">
+  カード生成
+</button>
 
-<div class="btn btn-primary" onclick="downloadImage()">DL</div>
-<div id="download">
-  <img id="canvas">
-  <a id="dl-link"></a>
+<!-- モーダルの設定 -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">画像生成完了</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="download">
+          <img id="canvas" class="img-fluid">
+          <a id="dl-link"></a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="btn btn-secondary" onclick="downloadImage()">DL</div>
+        <%= button_tag type:"submit", class: 'btn btn-primary' do %>
+          <%= fa_icon 'id-card', text: yield(:button_text) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+<% end %>

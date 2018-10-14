@@ -43,15 +43,25 @@ $(document).on('turbolinks:load', function() {
   });
 
 document.downloadImage = () => {
-    const twesumeElement = document.querySelector('#twesume');
-    const canvasElement = document.querySelector('#canvas');
-    const linkElement = document.querySelector('#dl-link');
+    const twesumeElement = document.querySelector('#twesume');  //カードの要素取得
+    const canvasElement = document.querySelector('#canvas');  //生成画像配置要素取得
+    const linkElement = document.querySelector('#dl-link');     //DLリンク要素取得
 
   html2canvas(twesumeElement).then(canvas => {
     canvasElement.src = canvas.toDataURL();
     linkElement.href = canvas.toDataURL('image/png');
     linkElement.download = 'canvas.png';
     linkElement.click();
+  });
+}
+
+//カード画像生成
+document.createImage = () => {
+  const twesumeElement = document.querySelector('#twesume');  //カードの要素取得
+  const canvasElement = document.querySelector('#canvas');  //生成画像配置要素取得
+  html2canvas(twesumeElement).then(canvas => {
+    canvasElement.src = canvas.toDataURL();
+    //linkElement.href = canvas.toDataURL('image/png');
   });
 }
   
