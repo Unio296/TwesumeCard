@@ -7,6 +7,8 @@ ruby '2.4.1'
 gem 'rails', '~> 5.2.0'
 # Use Bootstrap
 gem 'bootstrap'
+# Use jQuery
+gem "jquery-rails"
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -31,13 +33,18 @@ gem 'jbuilder', '~> 2.5'
 gem 'carrierwave'
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
+# Use fog
+gem 'fog'
 
 # twitter認証
 gem 'omniauth'
 gem 'omniauth-twitter'
 
-#reCAPTHCA導入
+# reCAPTHCA導入
 gem 'recaptcha', require: 'recaptcha/rails'
+
+# Google Analytics
+gem 'google-analytics-rails'
 
 # 日本語化
 gem 'rails-i18n'

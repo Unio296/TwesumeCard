@@ -11,8 +11,10 @@ class CreateResumes < ActiveRecord::Migration[5.2]
       t.string :languages
       t.string :employment_pattern
       t.text :note
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
+    add_index :resumes, [:user_id, :created_at]
   end
 end

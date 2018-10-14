@@ -1,0 +1,43 @@
+
+body{
+  background-image: image-url('birds.png');
+}
+
+#twesume{
+  width: 600px;
+  height: 355px;
+  background-image: image-url('birds.png');
+  .twesume-title{
+    font-size: 1.5rem;
+  }
+  .twesume-container{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  
+  .twesume-labels{
+    width: 30%;
+    .twesume-label{
+      padding-left: 5rem;
+      margin-bottom: 0.5rem;
+  
+    }
+  }
+
+  .twesume-items{
+    width: 60%;
+    .twesume-item{
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+}
+
+.modal{
+  display:none;
+  padding-right:15px;
+}
+
+
+

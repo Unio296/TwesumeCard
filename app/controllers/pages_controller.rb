@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
   def home
+    if logged_in?
+      @resume = current_user.resumes.build
+    end
+
   end
 
   def terms

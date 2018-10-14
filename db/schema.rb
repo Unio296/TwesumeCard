@@ -23,8 +23,11 @@ ActiveRecord::Schema.define(version: 2018_10_08_222742) do
     t.string "languages"
     t.string "employment_pattern"
     t.text "note"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_resumes_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_resumes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
