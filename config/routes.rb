@@ -14,9 +14,13 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   #App Routes
-  resources :users, param: :nickname, only:[:new, :show, :destroy] do
-    resources :resumes do
+  resources :users, param: :nickname, only:[:new, :show, :destroy], shallow: true do
+    resources :resumes, only:[:new, :create, :show, :edit, :update, :destroy] do
+      member do
+      end
     end
   end
   
+post '/image', to: 'resumes#image', as:'image'
+
 end

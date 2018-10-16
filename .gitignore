@@ -26,3 +26,6 @@ doc/
 .DS_Store
 .idea
 .secret
+
+# .env
+.env
