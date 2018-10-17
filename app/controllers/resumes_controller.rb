@@ -39,14 +39,12 @@ class ResumesController < ApplicationController
 
   # pngイメージのPATHを作成する
   def png_path_generate(hash)
-    "images/#{hash}.png"
+    "images/#{current_user.nickname}/#{hash}.png"
   end
 
   # bucket名を取得する
   def bucket
-    # production / development / test
-    environment = Rails.env
-    storage.directories.get("bigtweet2-#{environment}")
+    storage.directories.get("twesume-storage")
   end
 
   # storageを生成する

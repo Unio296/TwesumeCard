@@ -19,24 +19,34 @@
             </div>
           <% end %>
           <%= f.label :job_type, '職種' %>
+          <%= f.check_box :job_type_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_field :job_type, class: 'form-control mb-2', placeholder: '自宅警備院' %>
           <%= f.label :location, '勤務地' %>
+          <%= f.check_box :location_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_field :location, class: 'form-control mb-2', placeholder: '大阪、東京' %>
           <%= f.label :desired_salary, '年収' %>
+          <%= f.check_box :desired_salary_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_field :desired_salary, class: 'form-control mb-2', placeholder: '例：1000万以上' %>
           <%= f.label :timing, '転職時期' %>
+          <%= f.check_box :timing_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_field :timing, class: 'form-control mb-2', placeholder: '今すぐ' %>
           <%= f.label :age, '年齢' %>
+          <%= f.check_box :age_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_field :age, class: 'form-control mb-2', placeholder: '30代' %>
           <%= f.label :skills, 'スキル' %>
+          <%= f.check_box :skills_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_field :skills, class: 'form-control mb-2', placeholder: 'HTML/CSS, jQuery, BootStrap, Ruby, Ruby on Rails' %>
           <%= f.label :capacity, '資格' %>
+          <%= f.check_box :capacity_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_field :capacity, class: 'form-control mb-2', placeholder: '応用情報技術者' %>
           <%= f.label :languages, '言語' %>
+          <%= f.check_box :languages_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_field :languages, class: 'form-control mb-2', placeholder: '日本語、英語、中国語' %>
           <%= f.label :employment_pattern, '雇用形態' %>
+          <%= f.check_box :employment_pattern_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_field :employment_pattern, class: 'form-control mb-2', placeholder: '正社員、契約社員、' %>
           <%= f.label :note, 'その他' %>
+          <%= f.check_box :note_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_area :note, class: 'form-control mb-2', rows: '10', placeholder: 'その他要望、追記事項等あれば...' %>
 
       </div>
@@ -99,12 +109,11 @@
       <div class="modal-body">
         <div id="download">
           <img id="canvas" class="img-fluid">
-          <a id="dl-link"></a>
         </div>
       </div>
       <div class="modal-footer">
-        <div class="btn btn-secondary" onclick="downloadImage()">DL</div>
-        <%= button_tag type:"submit", class: 'btn btn-primary' do %>
+        <div class="btn btn-secondary" onclick="testImage()">test</div>
+        <%= button_tag type:"button", class: 'btn btn-primary' ,id: 'form-submit' do %>
           <%= fa_icon 'id-card', text: yield(:button_text) %>
         <% end %>
       </div>
@@ -170,31 +179,59 @@ document.downloadImage = () => {
     linkElement.download = 'canvas.png';
     linkElement.click();
   });
-}
+};
 
-//カード画像生成
-document.createImage = () => {
-  const twesumeElement = document.querySelector('#twesume');  //カードの要素取得
-  const canvasElement = document.querySelector('#canvas');  //生成画像配置要素取得
-  html2canvas(twesumeElement).then(canvas => {
-    canvasElement.src = canvas.toDataURL();
-    //linkElement.href = canvas.toDataURL('image/png');
-  });
-}
+document.testImage = () => {
 
-$('form').submit(function(){ 
+    function postImage(){
 
+      //データをPOSTして画像をS3に保存
+      var ajax_result = false;
+      // 生成する文字列に含める文字セット
+      var c = "abcdefghijklmnopqrstuvwxyz0123456789";
+      var cl = 36; //=c.length;
+      var hash = "";
+      for(var i=0; i<24; i++){
+        hash += c[Math.floor(Math.random()*cl)];
+      }
+
+      var canvas = document.getElementById("canvas"); //canvasを取得
+      var imgData = canvas.src; //base64形式の画像データ
+
+      // 処理前に Loading 画像を表示
+      
+      return $.ajax({
+        url: '/image',
+        type: 'POST',
+        dataType: 'json',
+        async: false,
+        data: {imgData: imgData, hash: hash}
+      });
+
+    
+    };
+
+    postImage().done(function(result) {
+      console.log('postできた')
+      return true;
+    }).fail(function(result) {
+      console.log('postできてない')
+      return false;
+    });
+};
+
+document.postImage = () => {
 //データをPOSTして画像をS3に保存
 
     // 生成する文字列に含める文字セット
     var c = "abcdefghijklmnopqrstuvwxyz0123456789";
-    var cl = c.length;
+    var cl = 36; //=c.length;
     var hash = "";
-    for(var i=0; i<l; i++){
+    for(var i=0; i<24; i++){
       hash += c[Math.floor(Math.random()*cl)];
     }
 
-    html2canvas($('#twesume').get(0)).then( function (canvas) {
+      var canvas = document.getElementById("canvas"); //canvasを取得
       var imgData = canvas.toDataURL(); //base64形式の画像データ
 
       // 処理前に Loading 画像を表示
@@ -205,13 +242,58 @@ $('form').submit(function(){
         dataType: 'json',
         async: true,
         data: {imgData: imgData, hash: hash},
-      }).done(function(data){
-        return true;
-      }).fail(function(){
-        return false;
       });
-    });
+};
 
+//カード画像生成
+document.createImage = () => {
+  const twesumeElement = document.querySelector('#twesume');  //カードの要素取得
+  const canvasElement = document.querySelector('#canvas');  //生成画像配置要素取得
+  html2canvas(twesumeElement).then(canvas => {  //#twesumeをcanvasに画像として生成
+    canvasElement.src = canvas.toDataURL();
+  });
+};
+
+$('#form-submit').click(function(){ 
+//データをPOSTして画像をS3に保存
+
+    function postImage(){
+
+      //データをPOSTして画像をS3に保存
+      var ajax_result = false;
+      // 生成する文字列に含める文字セット
+      var c = "abcdefghijklmnopqrstuvwxyz0123456789";
+      var cl = 36; //=c.length;
+      var hash = "";
+      for(var i=0; i<24; i++){
+        hash += c[Math.floor(Math.random()*cl)];
+      }
+
+      var canvas = document.getElementById("canvas"); //canvasを取得
+      var imgData = canvas.src; //base64形式の画像データ
+
+      // 処理前に Loading 画像を表示
+      
+      return $.ajax({
+        url: '/image',
+        type: 'POST',
+        dataType: 'json',
+        async: false,
+        data: {imgData: imgData, hash: hash}
+      });
+
+    
+    };
+
+    postImage().done(function(result) {
+      //console.log('postできた')
+      $('#new_resume').submit();
+      return true;
+    }).fail(function(result) {
+      //console.log('postできてない')
+      return false;
+    });
 });
+
 });
 </script>
