@@ -11,17 +11,19 @@ class CreateResumes < ActiveRecord::Migration[5.2]
       t.string :languages
       t.string :employment_pattern
       t.text :note
+      t.string :image
 
-      t.boolean :job_type_chk           ,default: false
-      t.boolean :location_chk           ,default: false
-      t.boolean :desired_salary_chk     ,default: false
+      t.boolean :job_type_chk           ,default: true
+      t.boolean :location_chk           ,default: true
+      t.boolean :desired_salary_chk     ,default: true
       t.boolean :timing_chk             ,default: false
-      t.boolean :age_chk                ,default: false
-      t.boolean :skills_chk             ,default: false
+      t.boolean :age_chk                ,default: true
+      t.boolean :skills_chk             ,default: true
       t.boolean :capacity_chk           ,default: false
       t.boolean :languages_chk          ,default: false
       t.boolean :employment_pattern_chk ,default: false
-      t.boolean :note_chk               ,default: false
+      t.boolean :note_chk               ,default: true
+      t.boolean :state                  ,default: true
 
       t.references :user, foreign_key: true
 

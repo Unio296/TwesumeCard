@@ -1,0 +1,10 @@
+<%# Twitterカード %>
+<% if controller.controller_name == 'resumes' && controller.action_name == 'show' %>
+
+<meta name="twitter:card" content='summary_large_image' />
+<meta name="twitter:site" content="<%= "@" + @resume.user.nickname %>" />
+<meta property="og:url" content="<%= resume_url(@resume.id) %>" />
+<meta property="og:title" content="<%= @resume.user.nickname + "のTWESUME CARD"%>" />
+<meta property="og:description" content= "test" />
+<meta property="og:image" content="<%= @resume.image %>" />
+<% end %>

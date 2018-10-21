@@ -52,8 +52,10 @@ gem 'rails-i18n'
 gem 'font-awesome-rails'
 # Change Modal design
 gem 'data-confirm-modal'
-
+# 環境変数管理
 gem 'dotenv-rails'
+# OGP
+gem 'meta-tags'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

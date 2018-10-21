@@ -1,4 +1,9 @@
 class ResumesController < ApplicationController
+  
+  def new
+    @resume = current_user.resumes.build
+  end
+
   def create
     @resume = current_user.resumes.build(resume_params)
     if @resume.save                                                          #resumeを保存
@@ -8,6 +13,10 @@ class ResumesController < ApplicationController
       #@resume = current_user.resumes.build
       render 'pages/home'                                                #homeアクションでrender
     end
+  end
+
+  def show
+    @resume = Resume.find(params[:id])
   end
 
   #ツイート用画像をPOST
@@ -20,7 +29,10 @@ class ResumesController < ApplicationController
   private
     def resume_params
       params.require(:resume).permit(:job_type, :location, :desired_salary, :timing, :age, 
-                                    :skills, :capacity, :languages, :employment_pattern, :note)
+                                    :skills, :capacity, :languages, :employment_pattern, :note, 
+                                    :job_type_chk, :location_chk, :desired_salary_chk, :timing_chk, :age_chk, 
+                                    :skills_chk, :capacity_chk, :languages_chk, :employment_pattern_chk, :note_chk, 
+                                    :image_hash)
     end
 
     def to_uploaded(base64_param)

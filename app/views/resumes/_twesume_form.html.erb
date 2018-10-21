@@ -48,7 +48,7 @@
           <%= f.label :note, 'その他' %>
           <%= f.check_box :note_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_area :note, class: 'form-control mb-2', rows: '10', placeholder: 'その他要望、追記事項等あれば...' %>
-
+          <%= f.hidden_field :image_hash %>
       </div>
       
       <div class="p-4 col-lg-7">  <%# twesume %>
@@ -56,30 +56,46 @@
           <div id="twesume" class="position-fixed shadow">
             <div class="twesume-title text-center p-4">TWESUME CARD</div>
             <div class="twesume-container">
-            <div class="twesume-labels">
-              <p id="label-job_type" class="twesume-label" >職種</p>
-              <p id="label-location" class="twesume-label" >勤務地</p>
-              <p id="label-desired_salary" class="twesume-label" >希望年収</p>
-              <p id="label-timing" class="twesume-label" >転職時期</p>
-              <p id="label-age" class="twesume-label" >年齢</p>
-              <p id="label-skills" class="twesume-label" >スキル</p>
-              <p id="label-capacity" class="twesume-label" >資格</p>
-              <p id="label-languages" class="twesume-label" >言語</p>
-              <p id="label-employment_pattern" class="twesume-label" >雇用形態</p>
-              <p id="label-note" class="twesume-label" >その他</p>
-            </div>
-            <div class="twesume-items">
-              <p id="item-job_type" class="twesume-item" ></p>
-              <p id="item-location" class="twesume-item" ></p>
-              <p id="item-desired_salary" class="twesume-item" ></p>
-              <p id="item-timing" class="twesume-item" ></p>
-              <p id="item-age" class="twesume-item" ></p>
-              <p id="item-skills" class="twesume-item" ></p>
-              <p id="item-capacity" class="twesume-item" ></p>
-              <p id="item-languages" class="twesume-item" ></p>
-              <p id="item-employment_pattern" class="twesume-item" ></p>
-              <p id="item-note" class="twesume-item" ></p>
-            </div>
+              <div class="twesume-element">
+                <p id="label-job_type" class="twesume-label" >職種</p>
+                <p id="item-job_type" class="twesume-item" ></p>
+              </div>
+              <div class="twesume-element">
+                <p id="label-location" class="twesume-label" >勤務地</p>
+                <p id="item-location" class="twesume-item" ></p>
+              </div>
+              <div class="twesume-element">
+                <p id="label-desired_salary" class="twesume-label" >年収</p>
+                <p id="item-desired_salary" class="twesume-item" ></p>
+              </div>
+              <div class="twesume-element">
+                <p id="label-timing" class="twesume-label" >転職時期</p>
+                <p id="item-timing" class="twesume-item" ></p>
+              </div>
+              <div class="twesume-element">
+                <p id="label-age" class="twesume-label" >年齢</p>
+                <p id="item-age" class="twesume-item" ></p>
+              </div>
+              <div class="twesume-element">
+                <p id="label-skills" class="twesume-label" >スキル</p>
+                <p id="item-skills" class="twesume-item" ></p>
+              </div>
+              <div class="twesume-element">
+                <p id="label-capacity" class="twesume-label" >資格</p>
+                <p id="item-capacity" class="twesume-item" ></p>
+              </div>
+              <div class="twesume-element">
+                <p id="label-languages" class="twesume-label" >言語</p>
+                <p id="item-languages" class="twesume-item" ></p>
+              </div>
+              <div class="twesume-element">
+                <p id="label-employment_pattern" class="twesume-label" >雇用形態</p>
+                <p id="item-employment_pattern" class="twesume-item" ></p>
+              </div>
+              <div class="twesume-element">
+                <p id="label-note" class="twesume-label" >備考</p>
+                <p id="item-note" class="twesume-item" ></p>
+              </div>
             </div>
           </div>
         </div>
@@ -126,47 +142,28 @@
 <script>
 $(document).on('turbolinks:load', function() { 
 
-  $('resume_')
-
-  $('#resume_job_type').change(function(){
-    $('#item-job_type').text($(this).val());
-  });
-
-  $('#resume_location').change(function(){
-    $('#item-location').text($(this).val());
-  });
-
-  $('#resume_desired_salary').change(function(){
-    $('#item-desired_salary').text($(this).val());
-  });
-
-  $('#resume_timing').change(function(){
-    $('#item-timing').text($(this).val());
-  });
-
-  $('#resume_age').change(function(){
-    $('#item-age').text($(this).val());
-  });
-
-  $('#resume_skills').change(function(){
-    $('#item-skills').text($(this).val());
-  });
-
-  $('#resume_capacity').change(function(){
-    $('#item-capacity').text($(this).val());
-  });
-
-  $('#resume_languages').change(function(){
-    $('#item-languages').text($(this).val());
-  });
-
-  $('#resume_employment_pattern').change(function(){
-    $('#item-employment_pattern').text($(this).val());
-  });
-
   $('#resume_note').change(function(){
     $('#item-note').text($(this).val());
   });
+
+  //⬇︎にリファクタリング
+  $('input[id^="resume_"]').on('change input',function() {
+    var item_id = $(this).attr("id").replace('resume_','item-');
+    //alert(item_id);
+    $('#'+item_id).text($(this).val());
+  });
+
+  // checkboxでカード上の表示非表示を切替
+  $('input[id$="_chk"]').on('change input',function() {
+    var item_id = $(this).attr("id").replace('resume_','item-').replace('_chk','');
+    //alert(item_id);
+      
+    if($(this).prop('checked')){        //チェックされている場合
+      $('#'+item_id).parent().show();   //表示
+    }else{                              //チェックが無い場合
+      $('#'+item_id).parent().hide();   //非表示
+    };
+  }).change();
 
 document.downloadImage = () => {
     const twesumeElement = document.querySelector('#twesume');  //カードの要素取得
@@ -272,8 +269,10 @@ $('#form-submit').click(function(){
       var canvas = document.getElementById("canvas"); //canvasを取得
       var imgData = canvas.src; //base64形式の画像データ
 
+      // hidden_fieldに値を設定
+      $('#resume_image_hash').val(hash);
+      alert($('#resume_image_hash').val());
       // 処理前に Loading 画像を表示
-      
       return $.ajax({
         url: '/image',
         type: 'POST',

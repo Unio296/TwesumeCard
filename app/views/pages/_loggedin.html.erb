@@ -1,5 +1,139 @@
-<% provide(:page_heading, 'Create TWESUME CARD') %>
-<% provide(:url, user_resumes_path(current_user.nickname)) %>
-<% provide(:button_text, 'Save CARD') %>
+loggedin
 
-<%= render 'resumes/twesume_form' %>
+<%= link_to 'カード新規作成', new_user_resume_path(current_user.nickname) ,class:"btn btn-primary" %>
+
+  <div class="py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-md-8 text-center">
+          <h1>カード一覧</h1>
+          <%#<p class="mb-4">あなたが作成したカードの一覧です</p>%>
+        </div>
+      </div>
+      <% if @resumes.empty? %>
+        <p>作成したカードはありません</p>
+        <%= link_to 'カード新規作成', new_user_resume_path(current_user.nickname) ,class:"btn btn-primary" %>
+      <% else %>
+      
+      <div class="row">
+      <% @resumes.each do |resume| %>
+        
+      <div class="col-lg-6 p-3 mx-auto">
+        <div class="card mb-4">
+            <ul class="nav nav-tabs px-1 py-2 bg-primary flex-column flex-sm-row justify-content-sm-center text-center">
+              <li class="nav-item">
+                <%= link_to '',class:"nav-link active show", data:{toggle:"tab", target:"#card-image#{resume.id}"} do %>
+                  カード
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '',class:"nav-link", data:{toggle:"tab", target:"#tabone#{resume.id}"} do %>
+                  項目A
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '',class:"nav-link", data:{toggle:"tab", target:"#tabtwo#{resume.id}"} do %>
+                  備考
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '',class:"nav-link", data:{toggle:"tab", target:"#tabthree#{resume.id}"} do %>
+                  設定
+                <% end %>
+              </li>
+            </ul>
+            <div class="card-body">
+              <div class="tab-content mt-2">
+                <%= content_tag(:div, class:"tab-pane fade text-center active show", id:"card-image#{resume.id}", role:"tabpanel") do %>
+                  <%= image_tag resume.image, class:"card-img-top p-3", alt:"TWESUME Card Cap" %>
+                  <%= link_to 'TWESUMEページ',resume_path(resume.id), class:"btn btn-primary" %>
+
+<%# ⬇︎S3へのリクエスト節約のため、画像を使わず、HTMLとCSSでカードを作れないか試行中（コメントアウト） %>
+<% if false %>
+        <div class="twesume-wrapper">
+          <div id="twesume" class="shadow">
+            <div class="twesume-title text-center p-4">TWESUME CARD</div>
+            <div class="twesume-container">
+            <% if resume.job_type_chk %>
+              <div class="twesume-element">
+                <p id="label-job_type" class="twesume-label" >職種</p>
+                <%= content_tag(:p, resume.job_type, id:"item-job_type", class:"twesume-item") %>
+              </div>
+            <% end %>
+            <% if resume.location_chk %>
+              <div class="twesume-element">
+                <p id="label-location" class="twesume-label" >勤務地</p>
+                <%= content_tag(:p, resume.location, id:"item-location", class:"twesume-item") %>
+              </div>
+            <% end %>
+            <% if resume.desired_salary_chk %>
+              <div class="twesume-element">
+                <p id="label-desired_salary" class="twesume-label" >年収</p>
+                <%= content_tag(:p, resume.desired_salary, id:"item-desired_salary", class:"twesume-item") %>
+              </div>
+            <% end %>
+            <% if resume.timing_chk %>
+              <div class="twesume-element">
+                <p id="label-timing" class="twesume-label" >転職時期</p>
+                <%= content_tag(:p, resume.timing, id:"item-timing", class:"twesume-item") %>
+              </div>
+            <% end %>
+            <% if resume.age_chk %>
+              <div class="twesume-element">
+                <p id="label-age" class="twesume-label" >年齢</p>
+                <%= content_tag(:p, resume.age, id:"item-age", class:"twesume-item") %>
+              </div>
+            <% end %>
+            <% if resume.skills_chk %>
+              <div class="twesume-element">
+                <p id="label-skills" class="twesume-label" >スキル</p>
+                <%= content_tag(:p, resume.skills, id:"item-skills", class:"twesume-item") %>
+              </div>
+            <% end %>
+            <% if resume.capacity_chk %>
+              <div class="twesume-element">
+                <p id="label-capacity" class="twesume-label" >資格</p>
+                <%= content_tag(:p, resume.capacity, id:"item-capacity", class:"twesume-item") %>
+              </div>
+            <% end %>
+            <% if resume.languages_chk %>
+              <div class="twesume-element">
+                <p id="label-languages" class="twesume-label" >言語</p>
+                <%= content_tag(:p, resume.languages, id:"item-languages", class:"twesume-item") %>
+              </div>
+            <% end %>
+            <% if resume.employment_pattern_chk %>
+              <div class="twesume-element">
+                <p id="label-employment_pattern" class="twesume-label" >雇用形態</p>
+                <%= content_tag(:p, resume.employment_pattern, id:"item-employment_pattern", class:"twesume-item") %>
+              </div>
+            <% end %>
+            <% if resume.note_chk %>
+              <div class="twesume-element">
+                <p id="label-note" class="twesume-label" >備考</p>
+                <%= content_tag(:p, resume.note, id:"item-note", class:"twesume-item") %>
+              </div>
+            <% end %>
+            </div>
+          </div>
+        </div>
+<% end %>
+                <% end %>
+                <%= content_tag(:div, class:"tab-pane fade text-center", id:"tabone#{resume.id}", role:"tabpanel") do %>
+                  <p class="">I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.</p>
+                <% end %>
+                <%= content_tag(:div, class:"tab-pane fade text-center", id:"tabtwo#{resume.id}", role:"tabpanel") do %>
+                  <p class="">I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                <% end %>
+                <%= content_tag(:div, class:"tab-pane fade text-center", id:"tabthree#{resume.id}", role:"tabpanel") do %>
+                  <p class="">"I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at."</p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          </div>
+      <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>
