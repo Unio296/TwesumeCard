@@ -128,7 +128,6 @@
         </div>
       </div>
       <div class="modal-footer">
-        <div class="btn btn-secondary" onclick="testImage()">test</div>
         <%= button_tag type:"button", class: 'btn btn-primary' ,id: 'form-submit' do %>
           <%= fa_icon 'id-card', text: yield(:button_text) %>
         <% end %>
@@ -138,6 +137,24 @@
 </div>
 <% end %>
 
+<div id="loading" class="backdrop">
+  <div class="lds-spinner">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <p class="text-center text-white spinner-text">画像を送信しています...<br>しばらくお待ちください</p>
+
+</div>
 
 <script>
 $(document).on('turbolinks:load', function() { 
@@ -165,83 +182,6 @@ $(document).on('turbolinks:load', function() {
     };
   }).change();
 
-document.downloadImage = () => {
-    const twesumeElement = document.querySelector('#twesume');  //カードの要素取得
-    const canvasElement = document.querySelector('#canvas');  //生成画像配置要素取得
-    const linkElement = document.querySelector('#dl-link');     //DLリンク要素取得
-
-  html2canvas(twesumeElement).then(canvas => {
-    canvasElement.src = canvas.toDataURL();
-    linkElement.href = canvas.toDataURL('image/png');
-    linkElement.download = 'canvas.png';
-    linkElement.click();
-  });
-};
-
-document.testImage = () => {
-
-    function postImage(){
-
-      //データをPOSTして画像をS3に保存
-      var ajax_result = false;
-      // 生成する文字列に含める文字セット
-      var c = "abcdefghijklmnopqrstuvwxyz0123456789";
-      var cl = 36; //=c.length;
-      var hash = "";
-      for(var i=0; i<24; i++){
-        hash += c[Math.floor(Math.random()*cl)];
-      }
-
-      var canvas = document.getElementById("canvas"); //canvasを取得
-      var imgData = canvas.src; //base64形式の画像データ
-
-      // 処理前に Loading 画像を表示
-      
-      return $.ajax({
-        url: '/image',
-        type: 'POST',
-        dataType: 'json',
-        async: false,
-        data: {imgData: imgData, hash: hash}
-      });
-
-    
-    };
-
-    postImage().done(function(result) {
-      console.log('postできた')
-      return true;
-    }).fail(function(result) {
-      console.log('postできてない')
-      return false;
-    });
-};
-
-document.postImage = () => {
-//データをPOSTして画像をS3に保存
-
-    // 生成する文字列に含める文字セット
-    var c = "abcdefghijklmnopqrstuvwxyz0123456789";
-    var cl = 36; //=c.length;
-    var hash = "";
-    for(var i=0; i<24; i++){
-      hash += c[Math.floor(Math.random()*cl)];
-    }
-
-      var canvas = document.getElementById("canvas"); //canvasを取得
-      var imgData = canvas.toDataURL(); //base64形式の画像データ
-
-      // 処理前に Loading 画像を表示
-
-      $.ajax({
-        url: '/image',
-        type: 'POST',
-        dataType: 'json',
-        async: true,
-        data: {imgData: imgData, hash: hash},
-      });
-};
-
 //カード画像生成
 document.createImage = () => {
   const twesumeElement = document.querySelector('#twesume');  //カードの要素取得
@@ -253,45 +193,36 @@ document.createImage = () => {
 
 $('#form-submit').click(function(){ 
 //データをPOSTして画像をS3に保存
+    $('#loading').show();
+    //データをPOSTして画像をS3に保存
+    // 生成する文字列に含める文字セット
+    var c = "abcdefghijklmnopqrstuvwxyz0123456789";
+    var cl = 36; //=c.length;
+    var hash = "";
+    for(var i=0; i<24; i++){
+      hash += c[Math.floor(Math.random()*cl)];
+    }
 
-    function postImage(){
+    var canvas = document.getElementById("canvas"); //canvasを取得
+    var imgData = canvas.src; //base64形式の画像データ
 
-      //データをPOSTして画像をS3に保存
-      var ajax_result = false;
-      // 生成する文字列に含める文字セット
-      var c = "abcdefghijklmnopqrstuvwxyz0123456789";
-      var cl = 36; //=c.length;
-      var hash = "";
-      for(var i=0; i<24; i++){
-        hash += c[Math.floor(Math.random()*cl)];
-      }
+    // hidden_fieldに値を設定
+    $('#resume_image_hash').val(hash);
 
-      var canvas = document.getElementById("canvas"); //canvasを取得
-      var imgData = canvas.src; //base64形式の画像データ
-
-      // hidden_fieldに値を設定
-      $('#resume_image_hash').val(hash);
-      alert($('#resume_image_hash').val());
-      // 処理前に Loading 画像を表示
-      return $.ajax({
-        url: '/image',
-        type: 'POST',
-        dataType: 'json',
-        async: false,
-        data: {imgData: imgData, hash: hash}
-      });
-
-    
-    };
-
-    postImage().done(function(result) {
-      //console.log('postできた')
+    $.ajax({
+      url: '/image',
+      type: 'POST',
+      dataType: 'json',
+      async: true,
+      data: {imgData: imgData, hash: hash}
+    }).done(function(result){
       $('#new_resume').submit();
       return true;
-    }).fail(function(result) {
-      //console.log('postできてない')
-      return false;
+    }).fail(function(result){
+      $('#loading').hide();
+      return false;  
     });
+
 });
 
 });
