@@ -6,7 +6,7 @@
   </div>
 </section>
 <section id="view-section" class="view-section">
-  <div class="py-5 bg-light">
+  <div class="py-5 bg-light text-center">
     <div class="container">
       <div class="row">
         <div class="mx-auto col-md-8 text-center">
@@ -16,7 +16,7 @@
       </div>
       <% if @resumes.empty? %>
         <p>作成したカードはありません</p>
-        <%= link_to 'カード新規作成', new_user_resume_path(current_user.nickname) ,class:"btn btn-primary" %>
+        <%#= link_to 'カード新規作成', new_user_resume_path(current_user.nickname) ,class:"btn btn-primary" %>
       <% else %>
       
       <div class="row">
