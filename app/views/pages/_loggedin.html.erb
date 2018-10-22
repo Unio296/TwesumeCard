@@ -1,12 +1,16 @@
-loggedin
 
-<%= link_to 'カード新規作成', new_user_resume_path(current_user.nickname) ,class:"btn btn-primary" %>
-
+<section id="create-section" class="create-section">
+  <div class="py-5 text-center">
+    <h2>カード作成</h2>
+    <%= link_to 'カード新規作成', new_user_resume_path(current_user.nickname) ,class:"btn btn-primary" %>
+  </div>
+</section>
+<section id="view-section" class="view-section">
   <div class="py-5 bg-light">
     <div class="container">
       <div class="row">
         <div class="mx-auto col-md-8 text-center">
-          <h1>カード一覧</h1>
+          <h2>カード一覧</h2>
           <%#<p class="mb-4">あなたが作成したカードの一覧です</p>%>
         </div>
       </div>
@@ -66,3 +70,4 @@ loggedin
       </div>
     </div>
   </div>
+  </section>

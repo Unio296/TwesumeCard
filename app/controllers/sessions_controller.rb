@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     user = User.find_or_create_from_auth(request.env['omniauth.auth'])
     session[:user_id] = user.id                                       #cookiesをクライアントに保存
     flash[:success] = "ユーザー認証が完了しました。"
-    redirect_back_or user_url(user.nickname)
+    redirect_back_or root_path
   end
 
   #ユーザログアウト時にsession削除
