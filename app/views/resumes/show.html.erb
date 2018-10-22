@@ -1,2 +1,23 @@
 
-<%= image_tag @resume.image, class:"card-img-top p-3", alt:"TWESUME Card Cap" %>
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" >
+        <div class="card text-center"> 
+          <%= image_tag @resume.image, size:"600x335", class:"card-img-top p-3", alt:"TWESUME CARD Cap" %>
+          <div class="card-body">
+          <p>この画像がツイートに表示されます</p>
+            <%= link_to 'Twitterにカード投稿' , 'https://twitter.com/share?text=%23twesumecard%20%23hiyokonitsuduke%20%23Twitter転職&url='+resume_url(@resume.slug), class:"btn btn-info" %>
+            <%= link_to '削除', resume_path(@resume.id), method: :delete, 
+                    data: {confirm: "このTwitter履歴書を削除します。よろしいですか？"}, class:"btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

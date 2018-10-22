@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   #App Routes
   resources :users, param: :nickname, only:[:new, :show, :destroy], shallow: true do
-    resources :resumes, only:[:new, :create, :show, :edit, :update, :destroy] do
+    resources :resumes, param: :slug, only:[:new, :create, :show, :edit, :update, :destroy] do
       member do
       end
     end

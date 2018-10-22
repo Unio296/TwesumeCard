@@ -159,15 +159,15 @@
 <script>
 $(document).on('turbolinks:load', function() { 
 
-  $('#resume_note').change(function(){
-    $('#item-note').text($(this).val());
-  });
-
-  //⬇︎にリファクタリング
+  //inputに入った情報をtwesume-itemに適用
   $('input[id^="resume_"]').on('change input',function() {
     var item_id = $(this).attr("id").replace('resume_','item-');
     //alert(item_id);
     $('#'+item_id).text($(this).val());
+  });
+  //noteはinputではなくtextareaなので別で実装
+  $('#resume_note').change(function(){
+    $('#item-note').text($(this).val());
   });
 
   // checkboxでカード上の表示非表示を切替

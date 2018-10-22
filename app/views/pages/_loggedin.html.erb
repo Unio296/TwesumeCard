@@ -46,9 +46,10 @@ loggedin
               <div class="tab-content mt-2">
                 <%= content_tag(:div, class:"tab-pane fade text-center active show", id:"card-image#{resume.id}", role:"tabpanel") do %>
                   <%= image_tag resume.image, class:"card-img-top p-3", alt:"TWESUME Card Cap" %>
-                  <%= link_to 'TWEuSUMEページ',resume_path(resume.id), class:"btn btn-primary" %>
+                  <%= link_to 'TWESUMEページ',resume_path(resume.slug), class:"btn btn-primary" %>
+                  
 
-<%# ⬇︎S3へのリクエスト節約のため、画像を使わず、HTMLとCSSでカードを作れないか試行中（コメントアウト） %>
+<%# ⬇︎S3へのリクエスト節約のため、画像を使わず、HTMLとCSSでカードを再現できないか試行中（コメントアウト中） %>
 <% if false %>
         <div class="twesume-wrapper">
           <div id="twesume" class="shadow">

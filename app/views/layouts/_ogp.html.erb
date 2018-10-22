@@ -7,4 +7,15 @@
 <meta property="og:title" content="<%= @resume.user.nickname + "のTWESUME CARD"%>" />
 <meta property="og:description" content= "test" />
 <meta property="og:image" content="<%= @resume.image %>" />
+
+<% else %>
+
+<%# ここに個別ページ以外のOGP設定 %>
+<meta name="twitter:card" content='summary' />
+<meta name="twitter:site" content="<%= "@" + current_user.nickname %>" />
+<meta property="og:url" content="<%= root_url %>" />
+<meta property="og:title" content="TWESUME CARD" />
+<meta property="og:description" content= "TWESUME CARD" />
+<meta property="og:image" content="" />
+
 <% end %>
