@@ -19,6 +19,21 @@ class ResumesController < ApplicationController
     @resume = Resume.find_by(slug: params[:slug])
   end
 
+  def edit
+    @resume = Resume.find_by(slug: params[:slug])
+  end
+
+  def update
+    @resume = Resume.find_by(slug: params[:slug])
+    
+    if @resume.update_attributes(resume_params)
+      flash[:success] = "カードを更新しました"
+      redirect_to resume_path(@resume.slug)
+    else
+      render 'edit'
+    end
+  end
+
   #ツイート用画像をPOST
   def image
     generate(to_uploaded(params[:imgData]), params[:hash])

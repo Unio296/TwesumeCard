@@ -5,11 +5,20 @@
       <div class="col-md-6 mx-auto" >
         <div class="card text-center"> 
           <%= image_tag @resume.image, size:"600x335", class:"card-img-top p-3", alt:"TWESUME CARD Cap" %>
-          <div class="card-body">
           <p>この画像がツイートに表示されます</p>
-            <%= link_to 'Twitterにカード投稿' , 'https://twitter.com/share?text=%23twesumecard%20%23hiyokonitsuduke%20%23Twitter転職&url='+resume_url(@resume.slug), class:"btn btn-info" %>
-            <%= link_to '削除', resume_path(@resume.id), method: :delete, 
-                    data: {confirm: "このTwitter履歴書を削除します。よろしいですか？"}, class:"btn btn-danger" %>
+          <div class="card-body">
+          
+            <%= link_to 'https://twitter.com/share?text=%23twesumecard%20%23hiyokonitsuduke%20%23Twitter転職&url='+resume_url(@resume.slug), class:"btn btn-info mb-1" do %>
+              <%= fa_icon 'twitter',text:" 投稿" %>
+            <% end %>
+            <br>
+            <%= link_to edit_resume_path(@resume.slug), class:"btn btn-success" do %>
+              <%= fa_icon 'edit', text:" 編集" %>
+            <% end %>
+            <%= link_to resume_path(@resume.slug), method: :delete, 
+                    data: {confirm: "このTwitter履歴書を削除します。よろしいですか？"}, class:"btn btn-danger" do%>
+              <%= fa_icon 'trash', text:" 削除" %>
+            <% end %>
           </div>
         </div>
       </div>

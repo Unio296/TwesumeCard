@@ -1,6 +1,7 @@
 <%# :page_heading 見出し %>
 <%# :url フォーム送信先URL %>
 <%# :button_text submitボタンのテキスト%>
+<%# :form_id form要素のid %>
 <%= form_for @resume, url: yield(:url) do |f| %>
 <div class="py-3">
   <div class="container">
@@ -216,7 +217,7 @@ $('#form-submit').click(function(){
       async: true,
       data: {imgData: imgData, hash: hash}
     }).done(function(result){
-      $('#new_resume').submit();
+      $("#<%=yield(:form_id)%>").submit();
       return true;
     }).fail(function(result){
       $('#loading').hide();

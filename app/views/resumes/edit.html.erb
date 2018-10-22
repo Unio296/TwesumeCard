@@ -1,0 +1,6 @@
+<% provide(:page_heading, 'Update TWESUME CARD') %>
+<% provide(:url, resume_path(@resume.slug)) %>
+<% provide(:button_text, 'Update CARD') %>
+<% provide(:form_id, "edit_resume_#{@resume.id}") %>
+
+<%= render 'resumes/twesume_form' %>

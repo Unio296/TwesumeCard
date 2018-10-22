@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # 静的ページ
   root 'pages#home'
   get '/terms', to: 'pages#terms'
@@ -19,8 +19,16 @@ Rails.application.routes.draw do
       member do
       end
     end
+    resources :products, param: :slug, only:[:new, :create, :edit, :update, :destroy] do
+    end
   end
   
+  get 'products/new'
+  get 'products/create'
+  get 'products/edit'
+  get 'products/update'
+  get 'products/destroy'
+
 post '/image', to: 'resumes#image', as:'image'
 
 end
