@@ -2,6 +2,7 @@
 <%# :url フォーム送信先URL %>
 <%# :button_text submitボタンのテキスト%>
 <%# :form_id form要素のid %>
+
 <%= form_for @resume, url: yield(:url) do |f| %>
 <div class="py-3">
   <div class="container">
@@ -46,15 +47,15 @@
           <%= f.label :employment_pattern, '雇用形態' %>
           <%= f.check_box :employment_pattern_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_field :employment_pattern, class: 'form-control mb-2', placeholder: '正社員、契約社員、' %>
-          <%= f.label :note, 'その他' %>
+          <%= f.label :note, '備考' %>
           <%= f.check_box :note_chk, {class:'d-inline-block'} , true , false %>
           <%= f.text_area :note, class: 'form-control mb-2', rows: '10', placeholder: 'その他要望、追記事項等あれば...' %>
           <%= f.hidden_field :image_hash %>
       </div>
       
       <div class="p-4 col-lg-7">  <%# twesume %>
-        <div class="twesume-wrapper">
-          <div id="twesume" class="position-fixed shadow">
+        <div class="twesume-wrapper sticky">
+          <div id="twesume" class="shadow">
             <div class="twesume-title text-center p-4">TWESUME CARD</div>
             <div class="twesume-container">
               <div class="twesume-element">
@@ -101,11 +102,16 @@
           </div>
         </div>
       <div>
-
     </div>
-
   </div>
 </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+      <%= f.label :note, '自己PR欄' %>
+      <%= f.text_area :comment, class: 'form-control mb-2', rows: '10', placeholder: 'こちらはカードには記載されませんが、カードのURL先ページに挿入されます' %>
+      </div>
+    </div>
 
 
 <!-- 切り替えボタンの設定 -->
@@ -159,13 +165,33 @@
 
 <script>
 $(document).on('turbolinks:load', function() { 
+//=====ページ読み込み時の処理======
+  //編集の場合、以前の入力内容をカードに適用
+  $('input[id^="resume_"]').each(function(){
+    var item_id = $(this).attr("id").replace('resume_','item-');
+    $('#'+item_id).text($(this).val());
+  });
+    
+    $('#item-note').text($('#resume_note').val());
 
-  //inputに入った情報をtwesume-itemに適用
+  // 読み込み時のcheckboxの状態でカード上の表示非表示を切替
+  $('input[id$="_chk"]').each(function() {
+    var item_id = $(this).attr("id").replace('resume_','item-').replace('_chk','');
+    //alert(item_id);
+    if($(this).prop('checked')){        //チェックされている場合
+      $('#'+item_id).parent().show();   //表示
+    }else{                              //チェックが無い場合
+      $('#'+item_id).parent().hide();   //非表示
+    };
+  });
+
+//=====inputに変更があった時の処理======
   $('input[id^="resume_"]').on('change input',function() {
     var item_id = $(this).attr("id").replace('resume_','item-');
     //alert(item_id);
     $('#'+item_id).text($(this).val());
   });
+
   //noteはinputではなくtextareaなので別で実装
   $('#resume_note').change(function(){
     $('#item-note').text($(this).val());
@@ -182,6 +208,8 @@ $(document).on('turbolinks:load', function() {
       $('#'+item_id).parent().hide();   //非表示
     };
   }).change();
+
+
 
 //カード画像生成
 document.createImage = () => {

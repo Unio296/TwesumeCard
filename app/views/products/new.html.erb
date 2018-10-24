@@ -1,2 +1,5 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<% provide(:page_heading, 'Post Portfolio') %>
+<% provide(:url, user_products_path(current_user.nickname)) %>
+<% provide(:button_text, 'Post Portfolio') %>
+
+<%= render 'product_form' %>

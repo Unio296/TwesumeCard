@@ -2,9 +2,9 @@
 <div class="py-5">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 mx-auto" >
+      <div class="card-info d-flex mx-auto" >
         <div class="card text-center"> 
-          <%= image_tag @resume.image, size:"600x335", class:"card-img-top p-3", alt:"TWESUME CARD Cap" %>
+          <%= image_tag @resume.image, size:"600x335", class:"img-fluid p-3", alt:"TWESUME CARD Cap" %>
           <p>この画像がツイートに表示されます</p>
           <div class="card-body">
           
@@ -23,8 +23,54 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="self-pr mt-3">
+        <h2>自己PR</h2>
+        <p><%= @resume.comment %></p>
+      </div>
+    </div>
+
   </div>
 </div>
+
+  <section id="product-view" class="product-view">
+
+  <div class="py-5 bg-light text-center">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-md-8 text-center">
+          <h3><%= @resume.user.nickname %>のポートフォリオ一覧</h3>
+        </div>
+      </div>
+      <% if @products.empty? %>
+        <p>まだポートフォリオの投稿がありません</p>
+      <% else %>
+      
+        <div class="row">
+        <% @products.each do |product| %>
+        
+        <div class="col-lg-6 p-3 mx-auto">
+          <div class="card mb-4">
+          <h3><%= product.title %></h3>
+          <%= image_tag product.image.url, class:"card-img-top p-3", alt:"TWESUME Card Cap" %>
+            <div class="card-body">
+            <p><%= product.description %></p>
+
+            <%= link_to product.title+"を見る", product.url, class:"btn btn-info" , target:["_blank"]%>
+              
+            </div>
+          </div>
+        </div>
+        <% end %>
+        
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+  </section>
+
 
 
 

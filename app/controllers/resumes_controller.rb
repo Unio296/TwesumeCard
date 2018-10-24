@@ -6,17 +6,17 @@ class ResumesController < ApplicationController
 
   def create
     @resume = current_user.resumes.build(resume_params)
-    if @resume.save                                                          #resumeを保存
-      flash[:success] = "Resume created!"                                    #flashに成功メッセージ
-      redirect_to root_url                                                      #rootにリダイレクト
-    else                                                                        #保存できなかった場合
-      #@resume = current_user.resumes.build
-      render 'pages/home'                                                #homeアクションでrender
+    if @resume.save                                                           #resumeを保存
+      flash[:success] = "Resume created!"                                     #flashに成功メッセージ
+      redirect_to root_url                                                    #rootにリダイレクト
+    else                                                                      #保存できなかった場合
+      render 'new'                                                            #homeアクションでrender
     end
   end
 
   def show
     @resume = Resume.find_by(slug: params[:slug])
+    @products = @resume.user.products.all
   end
 
   def edit
@@ -30,6 +30,7 @@ class ResumesController < ApplicationController
       flash[:success] = "カードを更新しました"
       redirect_to resume_path(@resume.slug)
     else
+      flash[:danger] = "カードを更新できませんでした"
       render 'edit'
     end
   end
@@ -44,7 +45,7 @@ class ResumesController < ApplicationController
   private
     def resume_params
       params.require(:resume).permit(:job_type, :location, :desired_salary, :timing, :age, 
-                                    :skills, :capacity, :languages, :employment_pattern, :note, 
+                                    :skills, :capacity, :languages, :employment_pattern, :note, :comment,
                                     :job_type_chk, :location_chk, :desired_salary_chk, :timing_chk, :age_chk, 
                                     :skills_chk, :capacity_chk, :languages_chk, :employment_pattern_chk, :note_chk, 
                                     :image_hash)

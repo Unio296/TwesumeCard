@@ -71,3 +71,46 @@
     </div>
   </div>
   </section>
+  <section id="product-create" class="product-create">
+    <div class="py-5 text-center">
+    <h2>ポートフォリオ投稿</h2>
+    <%= link_to '新規投稿', new_user_product_path(current_user.nickname) ,class:"btn btn-primary" %>
+  </div>
+  </section>
+  <section id="product-view" class="product-view">
+
+  <div class="py-5 bg-light text-center">
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-md-8 text-center">
+          <h2>ポートフォリオ一覧</h2>
+          <p class="mb-4">あなたのポートフォリオ一覧です<br>こちらのポートフォリオがTWESUMEカードのページ下部に表示されます</p>
+        </div>
+      </div>
+      <% if @products.empty? %>
+        <p>まだポートフォリオの投稿がありません</p>
+      <% else %>
+      
+        <div class="row">
+        <% @products.each do |product| %>
+        
+        <div class="col-lg-6 p-3 mx-auto">
+          <div class="card mb-4">
+          <h3><%= product.title %></h3>
+          <%= image_tag product.image.url, class:"card-img-top p-3", alt:"TWESUME Card Cap" %>
+            <div class="card-body">
+            <p><%= product.description %></p>
+
+            <%= link_to product.title+"を見る", product.url, class:"btn btn-info" , target:["_blank"]%>
+              
+            </div>
+          </div>
+        </div>
+        <% end %>
+        
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+  </section>

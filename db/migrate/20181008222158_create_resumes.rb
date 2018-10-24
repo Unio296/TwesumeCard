@@ -11,6 +11,7 @@ class CreateResumes < ActiveRecord::Migration[5.2]
       t.string :languages
       t.string :employment_pattern
       t.text :note
+      t.text :comment
       t.string :image
 
       t.boolean :job_type_chk           ,default: true

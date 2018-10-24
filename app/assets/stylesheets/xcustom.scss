@@ -3,16 +3,23 @@ body{
   background-image: image-url('birds.png');
 }
 .create-section{
-  background: #EEEEEE;
+  //background: #EEEEEE;
 }
 .alert{
   margin-bottom:0;
+}
+
+.sticky{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 20%;
 }
 
 #twesume{
   width: 600px;
   height: 335px;
   background-image: image-url('birds.png');
+
   .twesume-title{
     font-size: 1.5rem;
   }

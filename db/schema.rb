@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2018_10_22_151242) do
     t.string "image"
     t.string "url"
     t.text "description"
+    t.string "slug"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 2018_10_22_151242) do
     t.string "languages"
     t.string "employment_pattern"
     t.text "note"
+    t.text "comment"
     t.string "image"
     t.boolean "job_type_chk", default: true
     t.boolean "location_chk", default: true

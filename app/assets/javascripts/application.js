@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require jquery_ujs
 //= require rails-ujs
+//= require now-ui-kit
 //= require data-confirm-modal
 //= require activestorage
 //= require turbolinks

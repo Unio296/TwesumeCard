@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   def home
     if logged_in?
       @resumes = current_user.resumes.all
+      @products = current_user.products.all
       #debugger
     end
 
