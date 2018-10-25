@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   #App Routes
-  resources :users, param: :nickname, only:[:new, :show, :destroy], shallow: true do
+  resources :users, param: :nickname, only:[:edit, :update, :destroy], shallow: true do
     resources :resumes, param: :slug, only:[:new, :create, :show, :edit, :update, :destroy] do
       member do
       end

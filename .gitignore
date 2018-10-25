@@ -31,4 +31,4 @@ doc/
 .env
 
 # アップロードされたテスト画像を無視する
-/public/uploads
+/public/images

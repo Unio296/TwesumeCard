@@ -16,7 +16,7 @@
               <%= fa_icon 'edit', text:" 編集" %>
             <% end %>
             <%= link_to resume_path(@resume.slug), method: :delete, 
-                    data: {confirm: "このTwitter履歴書を削除します。よろしいですか？"}, class:"btn btn-danger" do%>
+                    data: {confirm: "このカードを削除します。よろしいですか？"}, class:"btn btn-danger" do%>
               <%= fa_icon 'trash', text:" 削除" %>
             <% end %>
           </div>
@@ -25,8 +25,8 @@
     </div>
 
     <div class="row">
-      <div class="self-pr mt-3">
-        <h2>自己PR</h2>
+      <div class="self-pr mx-auto text-center">
+        <h2 class="title">About Me</h2>
         <p><%= @resume.comment %></p>
       </div>
     </div>
@@ -40,7 +40,7 @@
     <div class="container">
       <div class="row">
         <div class="mx-auto col-md-8 text-center">
-          <h3><%= @resume.user.nickname %>のポートフォリオ一覧</h3>
+          <h3 class="title"><%= @resume.user.nickname %>のポートフォリオ</h3>
         </div>
       </div>
       <% if @products.empty? %>

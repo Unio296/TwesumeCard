@@ -11,14 +11,14 @@
             <% if logged_in? %>
 
             <li class="nav-item mx-1">
-              <%= link_to user_path(current_user.nickname), class:"nav-link align-items-center d-flex" do %>
-                <%= fa_icon "user_circle",text: current_user.nickname %>
+              <%= link_to edit_user_path(current_user.nickname), class:"nav-link align-items-center d-flex" do %>
+                <%= fa_icon "user-circle",text: current_user.nickname %>
               <% end %>
             </li>
 
             <li class="nav-item mx-1">
               <%= link_to logout_path, class:"nav-link align-items-center d-flex" do %>
-                <%= fa_icon "sign-out-alt",text: 'ログアウト' %>
+                <%= fa_icon "sign-out",text: 'ログアウト' %>
               <% end %>
             </li>
 
