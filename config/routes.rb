@@ -22,12 +22,6 @@ Rails.application.routes.draw do
     resources :products, param: :slug, only:[:new, :create, :edit, :update, :destroy] do
     end
   end
-  
-  get 'products/new'
-  get 'products/create'
-  get 'products/edit'
-  get 'products/update'
-  get 'products/destroy'
 
 post '/image', to: 'resumes#image', as:'image'
 

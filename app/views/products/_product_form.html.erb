@@ -26,7 +26,7 @@
   <%= f.text_area :description, class: 'form-control mb-3', rows:'5', placeholder: '仕事を辞めたすぎてムシャクシャして開発したサービス'  %>
   <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %><br>
   
-  <%= f.submit '投稿' ,class:"btn btn-primary mt-3" %>
+  <%= f.submit yield(:button_text) ,class:"btn btn-primary mt-3" %>
 
 <% end %>
 

@@ -2,6 +2,7 @@ class ResumesController < ApplicationController
   
   def new
     @resume = current_user.resumes.build
+    @resume.set_image_hash
   end
 
   def create
@@ -64,6 +65,8 @@ class ResumesController < ApplicationController
   def generate(image_uri, hash)
     bucket.files.create(key: png_path_generate(hash), public: true, body: open(image_uri))
   end
+
+  
 
   # pngイメージのPATHを作成する
   def png_path_generate(hash)

@@ -225,18 +225,20 @@ $('#form-submit').click(function(){
     $('#loading').show();
     //データをPOSTして画像をS3に保存
     // 生成する文字列に含める文字セット
-    var c = "abcdefghijklmnopqrstuvwxyz0123456789";
-    var cl = 36; //=c.length;
-    var hash = "";
-    for(var i=0; i<24; i++){
-      hash += c[Math.floor(Math.random()*cl)];
-    }
+    //var c = "abcdefghijklmnopqrstuvwxyz0123456789";
+    //var cl = 36; //=c.length;
+    //var hash = "";
+    //for(var i=0; i<24; i++){
+    //  hash += c[Math.floor(Math.random()*cl)];
+    //}
+
+    hash = $('#resume_image_hash').val();
 
     var canvas = document.getElementById("canvas"); //canvasを取得
     var imgData = canvas.src; //base64形式の画像データ
 
     // hidden_fieldに値を設定
-    $('#resume_image_hash').val(hash);
+    //$('#resume_image_hash').val(hash);
 
     $.ajax({
       url: '/image',

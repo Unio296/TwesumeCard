@@ -4,7 +4,7 @@
     <div class="row">
       <div class="card-info d-flex mx-auto" >
         <div class="card text-center"> 
-          <%= image_tag @resume.image, size:"600x335", class:"img-fluid p-3", alt:"TWESUME CARD Cap" %>
+          <%= image_tag resume_image_url(@resume), size:"600x335", class:"img-fluid p-3", alt:"TWESUME CARD Cap" %>
           <p>この画像がツイートに表示されます</p>
           <div class="card-body">
           
@@ -40,7 +40,7 @@
     <div class="container">
       <div class="row">
         <div class="mx-auto col-md-8 text-center">
-          <h3 class="title"><%= @resume.user.nickname %>のポートフォリオ</h3>
+          <h3 class="title"><%= @resume.user.name %>のポートフォリオ</h3>
         </div>
       </div>
       <% if @products.empty? %>

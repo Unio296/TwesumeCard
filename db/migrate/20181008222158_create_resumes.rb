@@ -12,7 +12,7 @@ class CreateResumes < ActiveRecord::Migration[5.2]
       t.string :employment_pattern
       t.text :note
       t.text :comment
-      t.string :image
+      t.string :image_hash
 
       t.boolean :job_type_chk           ,default: true
       t.boolean :location_chk           ,default: true
