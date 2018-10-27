@@ -25,12 +25,21 @@ body{
   width: 600px;
   height: 335px;
   background-image: image-url('birds.png');
+  background-color: rgba(233,163,38,0.3);
 
   .twesume-title{
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    font-weight:bold;
+    letter-spacing: 2px;
+    color:white;
   }
   .twesume-container{
-
+    background: white;
+    border-radius: 10px;
+    margin: 0 auto;
+    width:90%;
+    padding-top:13px;
+    padding-bottom: 7px;
     .twesume-element{
       width:100%;
       display:flex;
@@ -49,7 +58,7 @@ body{
 
       }
       #item-note{
-        text-align:left;
+        //text-align:left;
       }
 
     }

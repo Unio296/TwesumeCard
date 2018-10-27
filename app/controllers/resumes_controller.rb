@@ -36,6 +36,18 @@ class ResumesController < ApplicationController
     end
   end
 
+  def destroy
+    @resume = Resume.find_by(slug: params[:slug])
+    if @resume.destroy
+      degenerate(@resume.image_hash)    #S3から画像を削除
+      flash[:success] = "カードを削除しました"
+      redirect_to root_path
+    else
+      flash[:danger] = "カードを削除できませんでした"
+      redirect_to resume_path(@resume.slug)
+    end
+  end
+
   #ツイート用画像をPOST
   def image
     generate(to_uploaded(params[:imgData]), params[:hash])
@@ -66,7 +78,10 @@ class ResumesController < ApplicationController
     bucket.files.create(key: png_path_generate(hash), public: true, body: open(image_uri))
   end
 
-  
+  # S3 Bucket 内の画像を削除
+  def degenerate(hash)
+    bucket.files.get(png_path_generate(hash)).destroy
+  end
 
   # pngイメージのPATHを作成する
   def png_path_generate(hash)

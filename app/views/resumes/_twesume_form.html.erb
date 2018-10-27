@@ -56,7 +56,7 @@
       <div class="p-4 col-lg-7">  <%# twesume %>
         <div class="twesume-wrapper sticky">
           <div id="twesume" class="shadow">
-            <div class="twesume-title text-center p-4">TWESUME CARD</div>
+            <div class="twesume-title text-center p-3">TWESUME CARD</div>
             <div class="twesume-container">
               <div class="twesume-element">
                 <p id="label-job_type" class="twesume-label" >職種</p>
@@ -186,15 +186,16 @@ $(document).on('turbolinks:load', function() {
   });
 
 //=====inputに変更があった時の処理======
-  $('input[id^="resume_"]').on('change input',function() {
+  $('input[id^="resume_"]').on('change input keyup',function() {
     var item_id = $(this).attr("id").replace('resume_','item-');
     //alert(item_id);
     $('#'+item_id).text($(this).val());
   });
 
   //noteはinputではなくtextareaなので別で実装
-  $('#resume_note').change(function(){
-    $('#item-note').text($(this).val());
+  $('#resume_note').on('change input keyup', function(){
+    //alert($(this).val());
+    $('#item-note').html($(this).val().replace(/\r|\n|\r\n/g, '<br>'));
   });
 
   // checkboxでカード上の表示非表示を切替
