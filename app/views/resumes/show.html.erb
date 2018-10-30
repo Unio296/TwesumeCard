@@ -4,14 +4,14 @@
       <h2 class="title">
         <%= @resume.user.name %>のTWESUME</h2>
       <div class="row">
-        <div class="card-info d-flex mx-auto">
+        <div class="card-info mx-auto">
           <div class="card text-center">
             <%#= image_tag resume_image_url(@resume), size:"600x335", class:"img-fluid p-3", alt:"TWESUME CARD Cap" %>
             <div class="card-body">
               <%#ここにはTWESUMEの情報を記述するのがいいか？%>
 
-              <div id="twesume-show" class="shadow">
-                <div class="twesume-title text-center p-2">TWESU<strong>ME</strong> CARD</div>
+              <div id="twesume-show" class="twesume-show">
+                <div class="twesume-title text-center p-2">TWESU<strong>ME</strong> DETAIL</div>
                 <div class="twesume-container">
                   <div class="twesume-element">
                     <p id="label-job_type" class="twesume-label">職種</p>
@@ -70,7 +70,7 @@
                   <div class="twesume-element">
                     <p id="label-note" class="twesume-label">備考</p>
                     <p id="item-note" class="twesume-item">
-                      <%= @resume.note %>
+                      <%= newline2br_html(@resume.note) %>
                     </p>
                   </div>
                 </div>
@@ -86,7 +86,7 @@
         <div class="self-pr mx-auto text-center">
           <h2 class="title">自己PR</h2>
           <p>
-            <%= @resume.comment %>
+            <%= newline2br_html(@resume.comment) %>
           </p>
         </div>
       </div>
@@ -139,9 +139,9 @@
 <%# fixedでツイートボタンや、編集や削除へのリンクのウインドウを表示 %>
 
 <% if current_user?(@resume.user) %>
-<div class="owner-fixed shadow text-center p-3">
+<div class="owner-fixed shadow text-center p-3 d-none d-md-block">
   <p class="text-muted">この領域は<br>作成者にのみ<br>表示されます</p>
-  <%= link_to 'https://twitter.com/share?text=%23twesumecard%20%23hiyokonitsuduke%20%23Twitter転職&url='+resume_url(@resume.slug), class:"btn btn-info mb-1" do %>
+  <%= link_to "https://twitter.com/share?text=%23twesumecard%20%23hiyokonitsuduke%20%23Twitter転職&url=#{resume_url(@resume.slug)}?u=#{@resume.update_count}", class:"btn btn-info mb-1" do %>
   <%= fa_icon 'twitter',text:" 投稿" %>
   <% end %>
   <br>

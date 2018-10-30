@@ -85,15 +85,18 @@ body{
         margin-bottom: 0.5rem;
 
       }
-      #item-note{
-        //text-align:left;
-      }
 
     }
   }
 }
 
-#twesume-show{
+.card-info{
+  width:100%;
+  max-width: 600px;
+  min-width: 350px;
+}
+
+.twesume-show{
 
   background-color: rgba(255,163,38,0.2);
   background-image: image-url('birds.png');
@@ -104,23 +107,7 @@ body{
     //font-weight:bold;
     letter-spacing: 1px;
     color:white;
-  }
-  .twesume-title::before,.twesume-title::after{
-    content: "";
-    flex-grow: 1;
-    width:150px;
-	  height: 2px;
-    display:inline-block;
-    vertical-align: middle;
-  }
-
-  .twesume-title::before {
-    margin-right: .4em;
-    background: linear-gradient(-45deg, #fff, #fcead1);
-  }
-  .twesume-title::after {
-    margin-left: .4em;
-    background: linear-gradient(45deg, #fff, #fcead1);
+    
   }
 
   .twesume-container{
@@ -136,8 +123,9 @@ body{
       table-layout: fixed;
       .twesume-label{
         width: 30%;
-        padding-left: 4rem;
+        padding-left: 18%;
         margin-bottom: 0.5rem;
+        white-space: nowrap;
       }
     
       .twesume-item{
@@ -147,13 +135,12 @@ body{
         margin-bottom: 0.5rem;
         padding-left:10%;
       }
-      #item-note{
-        //text-align:left;
-      }
 
     }
   }
+
 }
+
 
 .modal-dialog{
   max-width:700px;

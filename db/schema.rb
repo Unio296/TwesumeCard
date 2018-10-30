@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2018_10_27_114105) do
     t.boolean "note_chk", default: true
     t.boolean "state", default: true
     t.string "slug"
+    t.integer "update_count", default: 0
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

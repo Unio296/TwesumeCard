@@ -26,6 +26,7 @@ class CreateResumes < ActiveRecord::Migration[5.2]
       t.boolean :note_chk               ,default: true
       t.boolean :state                  ,default: true
       t.string :slug
+      t.integer :update_count           ,default: 0
 
       t.references :user, foreign_key: true
 

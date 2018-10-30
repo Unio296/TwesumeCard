@@ -9,7 +9,11 @@ module ApplicationHelper
     end
   end
 
- 
+  # 改行を<br>に変換した後、htmlのコードにする
+  def newline2br_html(str)
+    return nil if str.empty?
+    str.gsub(/(\r\n|\r|\n)/, "<br>").html_safe
+  end
 
 
 end

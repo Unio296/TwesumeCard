@@ -23,44 +23,14 @@
         
       <div class="col-lg-6 p-3 mx-auto">
         <div class="card mb-4">
-            <ul class="nav nav-tabs px-1 py-2 bg-primary flex-column flex-sm-row justify-content-sm-center text-center">
-              <li class="nav-item">
-                <%= link_to '',class:"nav-link active show", data:{toggle:"tab", target:"#card-image#{resume.id}"} do %>
-                  カード
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to '',class:"nav-link", data:{toggle:"tab", target:"#tabone#{resume.id}"} do %>
-                  項目A
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to '',class:"nav-link", data:{toggle:"tab", target:"#tabtwo#{resume.id}"} do %>
-                  備考
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to '',class:"nav-link", data:{toggle:"tab", target:"#tabthree#{resume.id}"} do %>
-                  設定
-                <% end %>
-              </li>
-            </ul>
+            
             <div class="card-body">
-              <div class="tab-content mt-2">
+              
                 <%= content_tag(:div, class:"tab-pane fade text-center active show", id:"card-image#{resume.id}", role:"tabpanel") do %>
                   <%= image_tag resume_image_url(resume), class:"card-img-top p-3", alt:"TWESUME Card Cap" %>
                   <%= link_to 'TWESUMEページ',resume_path(resume.slug), class:"btn btn-primary" %>
                 <% end %>
-                <%= content_tag(:div, class:"tab-pane fade text-center", id:"tabone#{resume.id}", role:"tabpanel") do %>
-                  <p class="">I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.</p>
-                <% end %>
-                <%= content_tag(:div, class:"tab-pane fade text-center", id:"tabtwo#{resume.id}", role:"tabpanel") do %>
-                  <p class="">I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
-                <% end %>
-                <%= content_tag(:div, class:"tab-pane fade text-center", id:"tabthree#{resume.id}", role:"tabpanel") do %>
-                  <p class="">"I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at."</p>
-                <% end %>
-              </div>
+                
             </div>
           </div>
           </div>
