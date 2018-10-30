@@ -235,16 +235,12 @@
     };
 
     $('#form-submit').click(function () {
+      //二重投稿できないようにボタンを無効
+      $(this).prop("disabled",true);
       //データをPOSTして画像をS3に保存
+
+      //ロード画面表示
       $('#loading').show();
-      //データをPOSTして画像をS3に保存
-      // 生成する文字列に含める文字セット
-      //var c = "abcdefghijklmnopqrstuvwxyz0123456789";
-      //var cl = 36; //=c.length;
-      //var hash = "";
-      //for(var i=0; i<24; i++){
-      //  hash += c[Math.floor(Math.random()*cl)];
-      //}
 
       hash = $('#resume_image_hash').val();
 
