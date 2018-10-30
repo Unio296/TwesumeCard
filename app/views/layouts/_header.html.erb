@@ -1,7 +1,9 @@
   <header id="header" class="header">  
     <nav class="navbar navbar-expand-md bg-primary navbar-dark" >
       <div class="container">
-        <%= link_to 'TWESUME CARD', root_path, class: 'navbar-brand' %>
+        <%= link_to root_path, class: 'navbar-brand' do %>
+          TWESU<strong>ME</strong>
+        <% end %>
 
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarPrimaryContent">
           <span class="navbar-toggler-icon"></span>
@@ -24,7 +26,7 @@
 
             <% else %>
             <li class="nav-item mx-1">
-              <%= link_to 'auth/twitter', class:"nav-link" do %>
+              <%= link_to '/auth/twitter', class:"nav-link" do %>
                 <%= fa_icon 'twitter', text:" ログイン" %>
               <% end %>
             </li>

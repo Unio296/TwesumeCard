@@ -1,78 +1,157 @@
-
-<div class="py-5">
-  <div class="container">
-    <div class="row">
-      <div class="card-info d-flex mx-auto" >
-        <div class="card text-center"> 
-          <%= image_tag resume_image_url(@resume), size:"600x335", class:"img-fluid p-3", alt:"TWESUME CARD Cap" %>
-          <p>この画像がツイートに表示されます</p>
-          <div class="card-body">
-          
-            <%= link_to 'https://twitter.com/share?text=%23twesumecard%20%23hiyokonitsuduke%20%23Twitter転職&url='+resume_url(@resume.slug), class:"btn btn-info mb-1" do %>
-              <%= fa_icon 'twitter',text:" 投稿" %>
-            <% end %>
-            <br>
-            <%= link_to edit_resume_path(@resume.slug), class:"btn btn-success" do %>
-              <%= fa_icon 'edit', text:" 編集" %>
-            <% end %>
-            <%= link_to resume_path(@resume.slug), method: :delete, 
-                    data: {confirm: "このカードを削除します。よろしいですか？"}, class:"btn btn-danger" do%>
-              <%= fa_icon 'trash', text:" 削除" %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="self-pr mx-auto text-center">
-        <h2 class="title">About Me</h2>
-        <p><%= @resume.comment %></p>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-  <section id="product-view" class="product-view">
-
-  <div class="py-5 bg-light text-center">
-    <div class="container">
+<div class="py-3">
+  <section id="twesume-info" class="twesume-info mb-5">
+    <div class="container text-center">
+      <h2 class="title">
+        <%= @resume.user.name %>のTWESUME</h2>
       <div class="row">
-        <div class="mx-auto col-md-8 text-center">
-          <h3 class="title"><%= @resume.user.name %>のポートフォリオ</h3>
-        </div>
-      </div>
-      <% if @products.empty? %>
-        <p>まだポートフォリオの投稿がありません</p>
-      <% else %>
-      
-        <div class="row">
-        <% @products.each do |product| %>
-        
-        <div class="col-lg-6 p-3 mx-auto">
-          <div class="card mb-4">
-          <h3><%= product.title %></h3>
-          <%= image_tag product.image.url, class:"card-img-top p-3", alt:"TWESUME Card Cap" %>
+        <div class="card-info d-flex mx-auto">
+          <div class="card text-center">
+            <%#= image_tag resume_image_url(@resume), size:"600x335", class:"img-fluid p-3", alt:"TWESUME CARD Cap" %>
             <div class="card-body">
-            <p><%= product.description %></p>
+              <%#ここにはTWESUMEの情報を記述するのがいいか？%>
 
-            <%= link_to product.title+"を見る", product.url, class:"btn btn-info" , target:["_blank"]%>
-              
+              <div id="twesume-show" class="shadow">
+                <div class="twesume-title text-center p-2">TWESU<strong>ME</strong> CARD</div>
+                <div class="twesume-container">
+                  <div class="twesume-element">
+                    <p id="label-job_type" class="twesume-label">職種</p>
+                    <p id="item-job_type" class="twesume-item">
+                      <%= @resume.job_type %>
+                    </p>
+                  </div>
+                  <div class="twesume-element">
+                    <p id="label-location" class="twesume-label">勤務地</p>
+                    <p id="item-location" class="twesume-item">
+                      <%= @resume.location %>
+                    </p>
+                  </div>
+                  <div class="twesume-element">
+                    <p id="label-desired_salary" class="twesume-label">年収</p>
+                    <p id="item-desired_salary" class="twesume-item">
+                      <%= @resume.desired_salary %>
+                    </p>
+                  </div>
+                  <div class="twesume-element">
+                    <p id="label-timing" class="twesume-label">転職時期</p>
+                    <p id="item-timing" class="twesume-item">
+                      <%= @resume.timing %>
+                    </p>
+                  </div>
+                  <div class="twesume-element">
+                    <p id="label-age" class="twesume-label">年齢</p>
+                    <p id="item-age" class="twesume-item">
+                      <%= @resume.age %>
+                    </p>
+                  </div>
+                  <div class="twesume-element">
+                    <p id="label-skills" class="twesume-label">スキル</p>
+                    <p id="item-skills" class="twesume-item">
+                      <%= @resume.skills %>
+                    </p>
+                  </div>
+                  <div class="twesume-element">
+                    <p id="label-capacity" class="twesume-label">資格</p>
+                    <p id="item-capacity" class="twesume-item">
+                      <%= @resume.capacity %>
+                    </p>
+                  </div>
+                  <div class="twesume-element">
+                    <p id="label-languages" class="twesume-label">言語</p>
+                    <p id="item-languages" class="twesume-item">
+                      <%= @resume.languages %>
+                    </p>
+                  </div>
+                  <div class="twesume-element">
+                    <p id="label-employment_pattern" class="twesume-label">雇用形態</p>
+                    <p id="item-employment_pattern" class="twesume-item">
+                      <%= @resume.employment_pattern %>
+                    </p>
+                  </div>
+                  <div class="twesume-element">
+                    <p id="label-note" class="twesume-label">備考</p>
+                    <p id="item-note" class="twesume-item">
+                      <%= @resume.note %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
-        <% end %>
-        
-      <% end %>
       </div>
-    </div>
-  </div>
 
+      <% unless @resume.comment.empty? %>
+      <div class="row">
+        <div class="self-pr mx-auto text-center">
+          <h2 class="title">自己PR</h2>
+          <p>
+            <%= @resume.comment %>
+          </p>
+        </div>
+      </div>
+      <% end %>
+
+    </div>
   </section>
 
+  <%# ポートフォリオ一覧 %>
+  <% unless @products.empty? %>
+  <section id="product-view" class="product-view">
 
+    <div class="py-5 bg-light text-center">
+      <h3><strong><%= @resume.user.name %>のポートフォリオ</strong></h3>
 
+      <div class="container">
+        <div class="row">
 
+          <% @products.each do |product| %>
 
+          <%# ここが１つのポートフォリオ %>
+          <div class="mx-auto col-lg-6 text-center">
+            <div class="card mb-4">
+              <h3>
+                <%= product.title %>
+              </h3>
+              <%= image_tag product.image.url, class:"card-img-top p-3", alt:"TWESUME Card Cap" %>
+              <div class="card-body">
+                <p>
+                  <%= product.description %>
+                </p>
+                <%= link_to product.title+"を見る", product.url, class:"btn btn-info" , target:["_blank"] %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </section>
+  <%# TWESUMEのTwitterユーザページへのリンク %>
+  <div class="text-center">
+    <%= link_to "#{@resume.user.name}のtwitterページに行く", "https://twitter.com/intent/user?user_id=#{@resume.user.uid}", class:"btn btn-primary btn-lg my-4", target:["_blank"] %>
+  </div>
 
+</div>
+
+<%# fixedでツイートボタンや、編集や削除へのリンクのウインドウを表示 %>
+
+<% if current_user?(@resume.user) %>
+<div class="owner-fixed shadow text-center p-3">
+  <p class="text-muted">この領域は<br>作成者にのみ<br>表示されます</p>
+  <%= link_to 'https://twitter.com/share?text=%23twesumecard%20%23hiyokonitsuduke%20%23Twitter転職&url='+resume_url(@resume.slug), class:"btn btn-info mb-1" do %>
+  <%= fa_icon 'twitter',text:" 投稿" %>
+  <% end %>
+  <br>
+  <%= link_to edit_resume_path(@resume.slug), class:"btn btn-success mb-1" do %>
+  <%= fa_icon 'edit', text:" 編集" %>
+  <% end %>
+  <br>
+  <%= link_to resume_path(@resume.slug), method: :delete, 
+                      data: {confirm: "このTWESUMEを削除します。よろしいですか？"}, class:"btn btn-danger" do%>
+  <%= fa_icon 'trash', text:" 削除" %>
+  <% end %>
+</div>
+<% end %>

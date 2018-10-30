@@ -6,121 +6,134 @@
 <%= form_for @resume, url: yield(:url) do |f| %>
 <div class="py-3">
   <div class="container">
-  <h2 class="mb-4 text-center"><%= yield(:page_heading) %></h2>
+    <h2 class="mb-4 text-center">
+      <%= yield(:page_heading) %>
+    </h2>
     <div class="row">
       <div class="p-4 col-lg-5">
 
-          <% if @resume.errors.any? %>
-            <div class="alert alert-danger" role="alert">
-              <strong>入力内容にエラーがあります</strong>
-              <ul>
-                <% @resume.errors.each do |attr, msg| %>
-                  <li><%= msg %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <%= f.label :job_type, '職種' %>
-          <%= f.check_box :job_type_chk, {class:'d-inline-block'} , true , false %>
-          <%= f.text_field :job_type, class: 'form-control mb-2', placeholder: '自宅警備院' %>
-          <%= f.label :location, '勤務地' %>
-          <%= f.check_box :location_chk, {class:'d-inline-block'} , true , false %>
-          <%= f.text_field :location, class: 'form-control mb-2', placeholder: '大阪、東京' %>
-          <%= f.label :desired_salary, '年収' %>
-          <%= f.check_box :desired_salary_chk, {class:'d-inline-block'} , true , false %>
-          <%= f.text_field :desired_salary, class: 'form-control mb-2', placeholder: '例：1000万以上' %>
-          <%= f.label :timing, '転職時期' %>
-          <%= f.check_box :timing_chk, {class:'d-inline-block'} , true , false %>
-          <%= f.text_field :timing, class: 'form-control mb-2', placeholder: '今すぐ' %>
-          <%= f.label :age, '年齢' %>
-          <%= f.check_box :age_chk, {class:'d-inline-block'} , true , false %>
-          <%= f.text_field :age, class: 'form-control mb-2', placeholder: '30代' %>
-          <%= f.label :skills, 'スキル' %>
-          <%= f.check_box :skills_chk, {class:'d-inline-block'} , true , false %>
-          <%= f.text_field :skills, class: 'form-control mb-2', placeholder: 'HTML/CSS, jQuery, BootStrap, Ruby, Ruby on Rails' %>
-          <%= f.label :capacity, '資格' %>
-          <%= f.check_box :capacity_chk, {class:'d-inline-block'} , true , false %>
-          <%= f.text_field :capacity, class: 'form-control mb-2', placeholder: '応用情報技術者' %>
-          <%= f.label :languages, '言語' %>
-          <%= f.check_box :languages_chk, {class:'d-inline-block'} , true , false %>
-          <%= f.text_field :languages, class: 'form-control mb-2', placeholder: '日本語、英語、中国語' %>
-          <%= f.label :employment_pattern, '雇用形態' %>
-          <%= f.check_box :employment_pattern_chk, {class:'d-inline-block'} , true , false %>
-          <%= f.text_field :employment_pattern, class: 'form-control mb-2', placeholder: '正社員、契約社員、' %>
-          <%= f.label :note, '備考' %>
-          <%= f.check_box :note_chk, {class:'d-inline-block'} , true , false %>
-          <%= f.text_area :note, class: 'form-control mb-2', rows: '10', placeholder: 'その他要望、追記事項等あれば...' %>
-          <%= f.hidden_field :image_hash %>
+        <% if @resume.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <strong>入力内容にエラーがあります</strong>
+          <ul>
+            <% @resume.errors.each do |attr, msg| %>
+            <li>
+              <%= msg %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <%= f.label :job_type, '職種' %>
+        <%= f.check_box :job_type_chk, {class:'d-inline-block'} , true , false %>
+        <%= f.text_field :job_type, class: 'form-control mb-2', placeholder: 'エンジニア' %>
+        <%= f.label :location, '勤務地' %>
+        <%= f.check_box :location_chk, {class:'d-inline-block'} , true , false %>
+        <%= f.text_field :location, class: 'form-control mb-2', placeholder: '大阪、東京' %>
+        <%= f.label :desired_salary, '年収' %>
+        <%= f.check_box :desired_salary_chk, {class:'d-inline-block'} , true , false %>
+        <%= f.text_field :desired_salary, class: 'form-control mb-2', placeholder: '例：500万以上' %>
+        <%= f.label :timing, '転職時期' %>
+        <%= f.check_box :timing_chk, {class:'d-inline-block'} , true , false %>
+        <%= f.text_field :timing, class: 'form-control mb-2', placeholder: '3ヶ月後' %>
+        <%= f.label :age, '年齢' %>
+        <%= f.check_box :age_chk, {class:'d-inline-block'} , true , false %>
+        <%= f.text_field :age, class: 'form-control mb-2', placeholder: '30代' %>
+        <%= f.label :skills, 'スキル' %>
+        <%= f.check_box :skills_chk, {class:'d-inline-block'} , true , false %>
+        <%= f.text_field :skills, class: 'form-control mb-2', placeholder: 'HTML/CSS, jQuery, BootStrap, Ruby, Ruby on Rails' %>
+        <%= f.label :capacity, '資格' %>
+        <%= f.check_box :capacity_chk, {class:'d-inline-block'} , true , false %>
+        <%= f.text_field :capacity, class: 'form-control mb-2', placeholder: '応用情報技術者, 基本情報技術者' %>
+        <%= f.label :languages, '言語' %>
+        <%= f.check_box :languages_chk, {class:'d-inline-block'} , true , false %>
+        <%= f.text_field :languages, class: 'form-control mb-2', placeholder: '日本語, 英語, 中国語' %>
+        <%= f.label :employment_pattern, '雇用形態' %>
+        <%= f.check_box :employment_pattern_chk, {class:'d-inline-block'} , true , false %>
+        <%= f.text_field :employment_pattern, class: 'form-control mb-2', placeholder: '正社員, 契約社員' %>
+        <%= f.label :note, '備考' %>
+        <%= f.check_box :note_chk, {class:'d-inline-block'} , true , false %>
+        <%= f.text_area :note, class: 'form-control mb-2', rows: '10', placeholder: 'その他要望, 追記事項等あれば...' %>
+        <%= f.hidden_field :image_hash %>
       </div>
-      
-      <div class="p-4 col-lg-7">  <%# twesume %>
+
+      <div class="p-4 col-lg-7">
+        <%# twesume %>
         <div class="twesume-wrapper sticky">
+          <div class="text-center">
+            <p class="text-muted">こちらがツイート時に表示される画像です</p>
+          </div>
           <div id="twesume" class="shadow">
-            <div class="twesume-title text-center p-3">TWESUME CARD</div>
+            <div class="twesume-title text-center p-2">TWESU<strong>ME</strong> CARD</div>
             <div class="twesume-container">
               <div class="twesume-element">
-                <p id="label-job_type" class="twesume-label" >職種</p>
-                <p id="item-job_type" class="twesume-item" ></p>
+                <p id="label-job_type" class="twesume-label">職種</p>
+                <p id="item-job_type" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
-                <p id="label-location" class="twesume-label" >勤務地</p>
-                <p id="item-location" class="twesume-item" ></p>
+                <p id="label-location" class="twesume-label">勤務地</p>
+                <p id="item-location" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
-                <p id="label-desired_salary" class="twesume-label" >年収</p>
-                <p id="item-desired_salary" class="twesume-item" ></p>
+                <p id="label-desired_salary" class="twesume-label">年収</p>
+                <p id="item-desired_salary" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
-                <p id="label-timing" class="twesume-label" >転職時期</p>
-                <p id="item-timing" class="twesume-item" ></p>
+                <p id="label-timing" class="twesume-label">転職時期</p>
+                <p id="item-timing" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
-                <p id="label-age" class="twesume-label" >年齢</p>
-                <p id="item-age" class="twesume-item" ></p>
+                <p id="label-age" class="twesume-label">年齢</p>
+                <p id="item-age" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
-                <p id="label-skills" class="twesume-label" >スキル</p>
-                <p id="item-skills" class="twesume-item" ></p>
+                <p id="label-skills" class="twesume-label">スキル</p>
+                <p id="item-skills" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
-                <p id="label-capacity" class="twesume-label" >資格</p>
-                <p id="item-capacity" class="twesume-item" ></p>
+                <p id="label-capacity" class="twesume-label">資格</p>
+                <p id="item-capacity" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
-                <p id="label-languages" class="twesume-label" >言語</p>
-                <p id="item-languages" class="twesume-item" ></p>
+                <p id="label-languages" class="twesume-label">言語</p>
+                <p id="item-languages" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
-                <p id="label-employment_pattern" class="twesume-label" >雇用形態</p>
-                <p id="item-employment_pattern" class="twesume-item" ></p>
+                <p id="label-employment_pattern" class="twesume-label">雇用形態</p>
+                <p id="item-employment_pattern" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
-                <p id="label-note" class="twesume-label" >備考</p>
-                <p id="item-note" class="twesume-item" ></p>
+                <p id="label-note" class="twesume-label">備考</p>
+                <p id="item-note" class="twesume-item"></p>
               </div>
             </div>
           </div>
         </div>
-      <div>
+      </div>
     </div>
   </div>
 </div>
 
-    <div class="row">
-      <div class="col-lg-12">
-      <%= f.label :note, '自己PR欄' %>
-      <%= f.text_area :comment, class: 'form-control mb-2', rows: '10', placeholder: 'こちらはカードには記載されませんが、カードのURL先ページに挿入されます' %>
-      </div>
+<div class="row">
+  <div class="container">
+    <div class="col-lg-12">
+      <%= f.label :note, '自己PR' %>
+      <%= f.text_area :comment, class: 'form-control mb-2', rows: '10', placeholder: 'こちらの内容はカード内には記載されませんが、カードのURL先ページに挿入されます' %>
     </div>
+  </div>
+</div>
 
 
 <!-- 切り替えボタンの設定 -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="createImage()">
-  カード生成
-</button>
+<div class="mt-4 mb-5 text-center">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="createImage()">
+    カード生成
+  </button>
+</div>
 
 <!-- モーダルの設定 -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content text-center">
       <div class="modal-header">
@@ -136,7 +149,7 @@
       </div>
       <div class="modal-footer">
         <%= button_tag type:"button", class: 'btn btn-primary ml-auto' ,id: 'form-submit' do %>
-          <%= fa_icon 'id-card', text: yield(:button_text) %>
+        <%= fa_icon 'id-card', text: yield(:button_text) %>
         <% end %>
       </div>
     </div>
@@ -164,98 +177,101 @@
 </div>
 
 <script>
-$(document).on('turbolinks:load', function() { 
-//=====ページ読み込み時の処理======
-  //編集の場合、以前の入力内容をカードに適用
-  $('input[id^="resume_"]').each(function(){
-    var item_id = $(this).attr("id").replace('resume_','item-');
-    $('#'+item_id).text($(this).val());
-  });
-    
-    $('#item-note').text($('#resume_note').val());
-
-  // 読み込み時のcheckboxの状態でカード上の表示非表示を切替
-  $('input[id$="_chk"]').each(function() {
-    var item_id = $(this).attr("id").replace('resume_','item-').replace('_chk','');
-    //alert(item_id);
-    if($(this).prop('checked')){        //チェックされている場合
-      $('#'+item_id).parent().show();   //表示
-    }else{                              //チェックが無い場合
-      $('#'+item_id).parent().hide();   //非表示
-    };
-  });
-
-//=====inputに変更があった時の処理======
-  $('input[id^="resume_"]').on('change input keyup',function() {
-    var item_id = $(this).attr("id").replace('resume_','item-');
-    //alert(item_id);
-    $('#'+item_id).text($(this).val());
-  });
-
-  //noteはinputではなくtextareaなので別で実装
-  $('#resume_note').on('change input keyup', function(){
-    //alert($(this).val());
-    $('#item-note').html($(this).val().replace(/\r|\n|\r\n/g, '<br>'));
-  });
-
-  // checkboxでカード上の表示非表示を切替
-  $('input[id$="_chk"]').on('change input',function() {
-    var item_id = $(this).attr("id").replace('resume_','item-').replace('_chk','');
-    //alert(item_id);
-      
-    if($(this).prop('checked')){        //チェックされている場合
-      $('#'+item_id).parent().show();   //表示
-    }else{                              //チェックが無い場合
-      $('#'+item_id).parent().hide();   //非表示
-    };
-  }).change();
-
-
-
-//カード画像生成
-document.createImage = () => {
-  const twesumeElement = document.querySelector('#twesume');  //カードの要素取得
-  const canvasElement = document.querySelector('#canvas');  //生成画像配置要素取得
-  html2canvas(twesumeElement).then(canvas => {  //#twesumeをcanvasに画像として生成
-    canvasElement.src = canvas.toDataURL();
-  });
-};
-
-$('#form-submit').click(function(){ 
-//データをPOSTして画像をS3に保存
-    $('#loading').show();
-    //データをPOSTして画像をS3に保存
-    // 生成する文字列に含める文字セット
-    //var c = "abcdefghijklmnopqrstuvwxyz0123456789";
-    //var cl = 36; //=c.length;
-    //var hash = "";
-    //for(var i=0; i<24; i++){
-    //  hash += c[Math.floor(Math.random()*cl)];
-    //}
-
-    hash = $('#resume_image_hash').val();
-
-    var canvas = document.getElementById("canvas"); //canvasを取得
-    var imgData = canvas.src; //base64形式の画像データ
-
-    // hidden_fieldに値を設定
-    //$('#resume_image_hash').val(hash);
-
-    $.ajax({
-      url: '/image',
-      type: 'POST',
-      dataType: 'json',
-      async: true,
-      data: {imgData: imgData, hash: hash}
-    }).done(function(result){
-      $("#<%=yield(:form_id)%>").submit();
-      return true;
-    }).fail(function(result){
-      $('#loading').hide();
-      return false;  
+  $(document).on('turbolinks:load', function () {
+    //=====ページ読み込み時の処理======
+    //編集の場合、以前の入力内容をカードに適用
+    $('input[id^="resume_"]').each(function () {
+      var item_id = $(this).attr("id").replace('resume_', 'item-');
+      $('#' + item_id).text($(this).val());
     });
 
-});
+    $('#item-note').html($('#resume_note').val().replace(/\r|\n|\r\n/g, '<br>'));
 
-});
+    // 読み込み時のcheckboxの状態でカード上の表示非表示を切替
+    $('input[id$="_chk"]').each(function () {
+      var item_id = $(this).attr("id").replace('resume_', 'item-').replace('_chk', '');
+      //alert(item_id);
+      if ($(this).prop('checked')) { //チェックされている場合
+        $('#' + item_id).parent().show(); //表示
+      } else { //チェックが無い場合
+        $('#' + item_id).parent().hide(); //非表示
+      };
+    });
+
+    //=====inputに変更があった時の処理======
+    $('input[id^="resume_"]').on('change input keyup', function () {
+      var item_id = $(this).attr("id").replace('resume_', 'item-');
+      //alert(item_id);
+      $('#' + item_id).text($(this).val());
+    });
+
+    //noteはinputではなくtextareaなので別で実装
+    $('#resume_note').on('change input keyup', function () {
+      //alert($(this).val());
+      $('#item-note').html($(this).val().replace(/\r|\n|\r\n/g, '<br>'));
+    });
+
+    // checkboxでカード上の表示非表示を切替
+    $('input[id$="_chk"]').on('change input', function () {
+      var item_id = $(this).attr("id").replace('resume_', 'item-').replace('_chk', '');
+      //alert(item_id);
+
+      if ($(this).prop('checked')) { //チェックされている場合
+        $('#' + item_id).parent().show(); //表示
+      } else { //チェックが無い場合
+        $('#' + item_id).parent().hide(); //非表示
+      };
+    }).change();
+
+
+
+    //カード画像生成
+    document.createImage = () => {
+      const twesumeElement = document.querySelector('#twesume'); //カードの要素取得
+      const canvasElement = document.querySelector('#canvas'); //生成画像配置要素取得
+      html2canvas(twesumeElement).then(canvas => { //#twesumeをcanvasに画像として生成
+        canvasElement.src = canvas.toDataURL();
+      });
+    };
+
+    $('#form-submit').click(function () {
+      //データをPOSTして画像をS3に保存
+      $('#loading').show();
+      //データをPOSTして画像をS3に保存
+      // 生成する文字列に含める文字セット
+      //var c = "abcdefghijklmnopqrstuvwxyz0123456789";
+      //var cl = 36; //=c.length;
+      //var hash = "";
+      //for(var i=0; i<24; i++){
+      //  hash += c[Math.floor(Math.random()*cl)];
+      //}
+
+      hash = $('#resume_image_hash').val();
+
+      var canvas = document.getElementById("canvas"); //canvasを取得
+      var imgData = canvas.src; //base64形式の画像データ
+
+      // hidden_fieldに値を設定
+      //$('#resume_image_hash').val(hash);
+
+      $.ajax({
+        url: '/image',
+        type: 'POST',
+        dataType: 'json',
+        async: true,
+        data: {
+          imgData: imgData,
+          hash: hash
+        }
+      }).done(function (result) {
+        $("#<%=yield(:form_id)%>").submit();
+        return true;
+      }).fail(function (result) {
+        $('#loading').hide();
+        return false;
+      });
+
+    });
+
+  });
 </script>
