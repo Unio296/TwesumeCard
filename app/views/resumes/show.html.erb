@@ -13,66 +13,27 @@
               <div id="twesume-show" class="twesume-show">
                 <div class="twesume-title text-center p-2">TWESU<strong>ME</strong> DETAIL</div>
                 <div class="twesume-container">
-                  <div class="twesume-element">
-                    <p id="label-job_type" class="twesume-label">職種</p>
-                    <p id="item-job_type" class="twesume-item">
-                      <%= @resume.job_type %>
-                    </p>
-                  </div>
-                  <div class="twesume-element">
-                    <p id="label-location" class="twesume-label">勤務地</p>
-                    <p id="item-location" class="twesume-item">
-                      <%= @resume.location %>
-                    </p>
-                  </div>
-                  <div class="twesume-element">
-                    <p id="label-desired_salary" class="twesume-label">年収</p>
-                    <p id="item-desired_salary" class="twesume-item">
-                      <%= @resume.desired_salary %>
-                    </p>
-                  </div>
-                  <div class="twesume-element">
-                    <p id="label-timing" class="twesume-label">転職時期</p>
-                    <p id="item-timing" class="twesume-item">
-                      <%= @resume.timing %>
-                    </p>
-                  </div>
-                  <div class="twesume-element">
-                    <p id="label-age" class="twesume-label">年齢</p>
-                    <p id="item-age" class="twesume-item">
-                      <%= @resume.age %>
-                    </p>
-                  </div>
-                  <div class="twesume-element">
-                    <p id="label-skills" class="twesume-label">スキル</p>
-                    <p id="item-skills" class="twesume-item">
-                      <%= @resume.skills %>
-                    </p>
-                  </div>
-                  <div class="twesume-element">
-                    <p id="label-capacity" class="twesume-label">資格</p>
-                    <p id="item-capacity" class="twesume-item">
-                      <%= @resume.capacity %>
-                    </p>
-                  </div>
-                  <div class="twesume-element">
-                    <p id="label-languages" class="twesume-label">言語</p>
-                    <p id="item-languages" class="twesume-item">
-                      <%= @resume.languages %>
-                    </p>
-                  </div>
-                  <div class="twesume-element">
-                    <p id="label-employment_pattern" class="twesume-label">雇用形態</p>
-                    <p id="item-employment_pattern" class="twesume-item">
-                      <%= @resume.employment_pattern %>
-                    </p>
-                  </div>
+                  
+                  <%#% 表示する要素を指定 %>
+                  <% elements = {job_type:"職種", location:"勤務地", desired_salary:"年収", timing:"転職時期", age:"年齢", skills:"スキル", capacity:"資格", languages:"言語" , employment_pattern:"雇用形態"} %>
+
+                  <% elements.each do |key, val| %> <%# 表示する要素の表示 %>
+                    <% unless @resume[key].empty? %>  <%# 空白の項目は表示しない %>
+                    <div class="twesume-element">
+                    <%= content_tag(:p, val, id:"label-#{key}", class:"twesume-label")%>
+                    <%= content_tag(:p, @resume[key], id:"item-#{key}", class:"twesume-item") %>
+                    </div>
+                    <% end %>
+                  <% end %>
+                  
+                  <% unless @resume.note.empty? %>
                   <div class="twesume-element">
                     <p id="label-note" class="twesume-label">備考</p>
                     <p id="item-note" class="twesume-item">
                       <%= newline2br_html(@resume.note) %>
                     </p>
                   </div>
+                  <% end %>
                 </div>
               </div>
 
