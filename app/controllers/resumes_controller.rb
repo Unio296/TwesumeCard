@@ -1,5 +1,7 @@
 class ResumesController < ApplicationController
   
+  before_action :correct_user, only: [:edit, :update, :destroy] #編集、更新、削除は所有者のみ可能
+
   def new
     @resume = current_user.resumes.build
     @resume.set_image_hash
@@ -21,11 +23,11 @@ class ResumesController < ApplicationController
   end
 
   def edit
-    @resume = Resume.find_by(slug: params[:slug])
+    #@resume = Resume.find_by(slug: params[:slug])
   end
 
   def update
-    @resume = Resume.find_by(slug: params[:slug])
+    #@resume = Resume.find_by(slug: params[:slug])
     
     if @resume.update_attributes(resume_params)
       flash[:success] = "カードを更新しました"
@@ -37,7 +39,7 @@ class ResumesController < ApplicationController
   end
 
   def destroy
-    @resume = Resume.find_by(slug: params[:slug])
+    #@resume = Resume.find_by(slug: params[:slug])
     if @resume.destroy
       degenerate(@resume.image_hash)    #S3から画像を削除
       flash[:success] = "カードを削除しました"
@@ -102,4 +104,15 @@ class ResumesController < ApplicationController
       region: 'ap-northeast-1'
     )
   end
+
+  #current_userが@userと一致するか
+  def correct_user
+    @resume = Resume.find_by(slug: params[:slug])
+    #debugger
+    unless current_user?(@resume.user) then
+      flash[:danger] = "あなたは#{@user.nickname}ではありません"
+      redirect_to root_path
+    end
+  end
+
 end

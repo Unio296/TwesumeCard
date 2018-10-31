@@ -125,6 +125,7 @@ body{
         width: 30%;
         padding-left: 18%;
         margin-bottom: 0.5rem;
+        text-align: left;
         white-space: nowrap;
       }
     
@@ -141,6 +142,27 @@ body{
 
 }
 
+//小さいデバイスの場合、TWESUME DETAILのレイアウトを微調整
+@media screen and (max-width:767px){
+  .card-body{
+    padding:0.5rem;
+  }
+  .twesume-show{
+  .twesume-container{
+    width:90%;
+
+    .twesume-element{
+
+      .twesume-label{
+        padding-left: 10%;
+        
+      }
+    }
+  }
+  }
+
+}
+
 
 .modal-dialog{
   max-width:700px;
@@ -148,10 +170,20 @@ body{
 
 .owner-fixed{
   background-color:white;
+  width:115px;
   position:fixed;
   bottom:10px;
   right:10px;
   border-radius: 10px;
+}
+
+//小さいデバイスの場合、TWESUME CARDのプレビューを表示しない
+@media screen and (max-width:767px){
+  .owner-fixed{
+    width:100%;
+    position:static;
+    
+  }
 }
 
 #loading{
