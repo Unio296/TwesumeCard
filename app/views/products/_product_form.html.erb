@@ -1,3 +1,4 @@
+<section class="my-4">
 <h2 class="mb-4 text-center">
   <%= yield(:page_heading) %>
 </h2>
@@ -27,6 +28,7 @@
         <%= f.text_field :url, class: 'form-control mb-3', placeholder: 'https://twesumecard.com' %>
         <%= f.label :description, 'このポートフォリオの説明' %>
         <%= f.text_area :description, class: 'form-control mb-3', rows:'5', placeholder: '仕事を辞めたすぎてムシャクシャして開発したサービス'  %>
+        <%= f.label :image, 'ポートフォリオの画像' %>
         <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %><br>
 
         <%= f.submit yield(:button_text) ,class:"btn btn-primary mt-3" %>
@@ -37,7 +39,7 @@
     </div>
   </div>
 </div>
-
+</section>
 
 <script type="text/javascript">
   $('#product_image').bind('change', function () {

@@ -90,6 +90,8 @@ GEM
     erubi (1.7.1)
     excon (0.62.0)
     execjs (2.7.0)
+    ezdz-rails (0.5.1)
+      railties (>= 3.2, < 6.0)
     factory_bot (4.11.1)
       activesupport (>= 3.0.0)
     factory_bot_rails (4.11.1)
@@ -449,6 +451,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   data-confirm-modal
   dotenv-rails
+  ezdz-rails
   factory_bot_rails
   fog
   font-awesome-rails

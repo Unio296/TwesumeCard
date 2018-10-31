@@ -17,6 +17,7 @@
 //= require rails-ujs
 //= require now-ui-kit
 //= require data-confirm-modal
+//= require jquery.ezdz
 //= require activestorage
 //= require turbolinks
 //= require_tree .
