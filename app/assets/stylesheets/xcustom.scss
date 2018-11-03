@@ -2,12 +2,25 @@
 body{
   background-image: image-url('birds.png');
   font-family: 'Montserrat','Hiragino Kaku Gothic Pro','M PLUS Rounded 1c', sans-serif;
+  text-align: center;
+}
+
+.input-wrapper{
+  text-align: left;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.align-center{
+  align-items: center;
 }
 
 #top-wrapper {
   color:white;
   width:100%;
-  height: 800px;
+
   background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), image-url("twesume-top.jpg");
   background-size: cover;
 }
@@ -31,8 +44,17 @@ body{
   top: 20%;
 }
 
-#twesume{
+.index-card{
+  min-height:400px;
+}
 
+.twesume{
+  width: 600px;
+  //height: 335px;
+  overflow: hidden;
+  }
+
+#twesume{
   background-color: rgba(255,163,38,0.2);
   background-image: image-url('birds.png');
   width: 600px;
@@ -74,6 +96,7 @@ body{
       display:flex;
       table-layout: fixed;
       .twesume-label{
+        
         width: 30%;
         padding-left: 5rem;
         margin-bottom: 0.5rem;
@@ -81,7 +104,6 @@ body{
     
       .twesume-item{
         width:60%;
-        text-align: center;
         overflow-wrap: break-word;
         margin-bottom: 0.5rem;
 
@@ -134,7 +156,6 @@ body{
     
       .twesume-item{
         width:60%;
-        text-align: center;
         overflow-wrap: break-word;
         margin-bottom: 0.5rem;
         padding-left:10%;

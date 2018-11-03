@@ -1,28 +1,25 @@
 <section id="twesume-info" class="twesume-info mb-5">
-  <div class="container text-center">
+  <div class="container">
     <h2 class="title">
       <%= @resume.user.name %>のTWESUME</h2>
     <div class="row">
       <div class="card-info mx-auto">
-        <div class="card text-center">
+        <div class="card">
           <%#= image_tag resume_image_url(@resume), size:"600x335", class:"img-fluid p-3", alt:"TWESUME CARD Cap" %>
           <div class="card-body">
             <%#ここにはTWESUMEの情報を記述するのがいいか？%>
 
             <div id="twesume-show" class="twesume-show">
-              <div class="twesume-title text-center p-2">TWESU<strong>ME</strong> DETAIL</div>
+              <div class="twesume-title p-2">TWESU<strong>ME</strong> DETAIL</div>
               <div class="twesume-container">
 
-                <%#% 表示する要素を指定 %>
-                <% elements = {job_type:"職種", location:"勤務地", desired_salary:"年収", timing:"転職時期", age:"年齢", skills:"スキル", capacity:"資格", languages:"言語" , employment_pattern:"雇用形態"} %>
-
-                <% elements.each do |key, val| %>
+                <% CardItem.all.each do |item| %>
                 <%# 表示する要素の表示 %>
-                <% unless @resume[key].empty? %>
+                <% unless @resume[item[:key]].empty? %>
                 <%# 空白の項目は表示しない %>
                 <div class="twesume-element">
-                  <%= content_tag(:p, val, id:"label-#{key}", class:"twesume-label")%>
-                  <%= content_tag(:p, @resume[key], id:"item-#{key}", class:"twesume-item") %>
+                  <%= content_tag(:p, item[:val], id:"label-#{item[:key]}", class:"twesume-label")%>
+                  <%= content_tag(:p, @resume[item[:key]], id:"item-#{item[:key]}", class:"twesume-item") %>
                 </div>
                 <% end %>
                 <% end %>
@@ -45,7 +42,7 @@
 
     <% unless @resume.comment.empty? %>
     <div class="row">
-      <div class="self-pr mx-auto text-center">
+      <div class="self-pr mx-auto">
         <h2 class="title">自己PR</h2>
         <p>
           <%== newline2br(@resume.comment) %>
@@ -92,7 +89,7 @@
   <% end %>
 </section>
 <%# TWESUMEのTwitterユーザページへのリンク %>
-<div class="text-center">
+<div class="twitter-pagelink">
   <%= link_to "#{@resume.user.name}のtwitterページに行く", "https://twitter.com/intent/user?user_id=#{@resume.user.uid}", class:"btn btn-primary btn-lg my-4", target:["_blank"] %>
 </div>
 
@@ -101,7 +98,7 @@
 <%# fixedでツイートボタンや、編集や削除へのリンクのウインドウを表示 %>
 
 <% if current_user?(@resume.user) %>
-<div class="owner-fixed shadow text-center p-3 ">
+<div class="owner-fixed shadow p-3 ">
   <p class="text-muted">この領域は作成者にのみ表示されます</p>
   <%= link_to "https://twitter.com/share?text=%23twesumecard%20%23hiyokonitsuduke%20%23Twitter転職&url=#{resume_url(@resume.slug)}?u=#{@resume.update_count}", class:"btn btn-info mb-1", target:["_blank"] do %>
   <%= fa_icon 'twitter',text:" 投稿" %>

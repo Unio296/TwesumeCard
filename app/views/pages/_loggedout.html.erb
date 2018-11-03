@@ -4,7 +4,21 @@
     <h1 class="top-title">TWESU<strong>ME.</strong></h1>
     
     <p>ポートフォリオでアピールするTwitter転職</p>
-    <%= image_tag 'top-example.png', class:"p-3", alt:"TWESUME Card Cap" %>
+    <div class="row justify-center align-center">
+    <div class ="image-wrapper col-sm-4">
+      <%= image_tag 'twesume-tweet.png', class:"p-3 img-fluid", alt:"TWESUME Card Cap" %>
+    </div>
+    <div class="arrow-wrapper align-middle">
+      <%= fa_icon 'angle-double-right', class:"d-none d-sm-block fa-5x" %>
+      <%= fa_icon 'angle-double-down', class:"d-block d-sm-none fa-5x" %>
+    </div>
+    <div class ="image-wrapper col-sm-4">
+      <%= image_tag 'top-example.png', class:"p-3 img-fluid", alt:"TWESUME Card Cap" %>
+    </div>
+    </div>
+
+
+    <h3>ミニ履歴書を作成してLet's Twitter転職！！</h3>
     <div class="top-button my-5">
     <%= link_to 'auth/twitter', class:"btn btn-primary btn-lg" do %>
       <%= fa_icon 'twitter', text:" でログイン" %>
@@ -13,8 +27,33 @@
   </div>
 </section>
 
-<section id="guide" class="guide">
+<section id="guide" class="guide bg-dark">
   <h2 class="guide-title">使い方</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <%= image_tag 'macbook_example.png', class:"p-3 img-fluid", alt:"TWESUME Card Cap" %>
+      </div>
+      <div class="col-lg-6">
+        <h5>1. Twitter履歴書ページを作成</h5>
+        <p>Twitterアカウントでログインし、TWESUME（Twitter履歴書）とTwitterカードを作ろう！</p>
+      </div>
+      <div class="col-lg-6">
+        <h5>2. ポートフォリオを投稿</h5>
+        <p>自分が開発した、または開発に携わったものを投稿し、アピール力を強化しよう！！</p>
+      </div>
+      <div class="col-lg-6">
+      </div>
+      <div class="col-lg-6">
+        <%= image_tag 'twesume-tweet.png', class:"p-3 img-fluid", alt:"TWESUME Card Cap" %>
+      </div>
+      <div class="col-lg-6">
+        <h5>3. ツイートで拡散</h5>
+        <p>TWESUMEカードをツイートして、採用担当の方に見てもらえるように拡散しよう！！</p>
+      </div>
+    </div>
+  </div>
+
 </section>
 <%#Twitter Timeline%>
 <section id="twitter-timeline" class="twitter-timeline">

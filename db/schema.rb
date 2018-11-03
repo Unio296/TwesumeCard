@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2018_10_27_114105) do
     t.string "nickname"
     t.string "image_url"
     t.string "image"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["nickname"], name: "index_users_on_nickname", unique: true

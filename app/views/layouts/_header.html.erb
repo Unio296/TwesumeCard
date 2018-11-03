@@ -10,6 +10,13 @@
         </button>
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbarPrimaryContent">
           <ul class="navbar-nav">
+            <%# 検索ページ %>
+            <li class="nav-item mx-1">
+              <%= link_to resumes_index_path, class:"nav-link align-items-center d-flex" do %>
+                <%= fa_icon "search", text:"TWESUME検索" %>
+              <% end %>
+            </li>
+
             <% if logged_in? %>
 
             <li class="nav-item mx-1">

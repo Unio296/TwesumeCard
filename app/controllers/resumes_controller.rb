@@ -57,6 +57,13 @@ class ResumesController < ApplicationController
     render :json => data
   end
 
+  # 検索
+  def index
+    @q = Resume.ransack(params[:q])
+    @resumes = @q.result.page(params[:page])
+    #debugger
+  end
+
   private
     def resume_params
       params.require(:resume).permit(:job_type, :location, :desired_salary, :timing, :age, 

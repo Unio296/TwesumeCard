@@ -10,7 +10,7 @@
       <%= yield(:page_heading) %>
     </h2>
     <div class="row">
-      <div class="p-4 col-lg-5">
+      <div class="input-wrapper p-4 col-lg-5">
 
         <% if @resume.errors.any? %>
         <div class="alert alert-danger" role="alert">
@@ -64,7 +64,7 @@
             <p class="text-muted d-none d-md-block">こちらがツイート時に表示される画像です</p>
           </div>
           <div id="twesume" class="shadow">
-            <div class="twesume-title text-center p-2">TWESU<strong>ME</strong> CARD</div>
+            <div class="twesume-title p-2">TWESU<strong>ME</strong> CARD</div>
             <div class="twesume-container">
               <div class="twesume-element">
                 <p id="label-job_type" class="twesume-label">職種</p>
@@ -116,7 +116,7 @@
 
 <div class="row">
   <div class="container">
-    <div class="col-lg-12">
+    <div class="input-wrapper col-lg-12">
       <%= f.label :note, '自己PR' %>
       <%= f.text_area :comment, class: 'form-control mb-2', rows: '10', placeholder: 'こちらの内容はカード内には記載されませんが、カードのURL先ページに挿入されます' %>
     </div>
@@ -125,7 +125,7 @@
 
 
 <!-- 切り替えボタンの設定 -->
-<div class="mt-4 mb-5 text-center">
+<div class="mt-4 mb-5">
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="createImage()">
     カード生成
   </button>
@@ -135,7 +135,7 @@
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content text-center">
+    <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">画像生成完了</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
@@ -172,7 +172,7 @@
     <div></div>
     <div></div>
   </div>
-  <p class="text-center text-white spinner-text">画像を送信しています...<br>しばらくお待ちください</p>
+  <p class="text-white spinner-text">画像を送信しています...<br>しばらくお待ちください</p>
 
 </div>
 

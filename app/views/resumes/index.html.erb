@@ -1,0 +1,101 @@
+<div class="container">
+  <h1 class="title">TWESUME 検索</h1>
+  <div class="row justify-center border-bottom">
+  
+  <%= search_form_for @q, url: resumes_index_path, class:"form-group w-50" do |f| %>
+  <div class="input-wrapper">
+    <%= f.label :job_type_cont, '職種' %>
+    <%= f.search_field :job_type_cont, class:"form-control mb-2" %>
+    <%= f.label :location_cont, '勤務地' %>
+    <%= f.search_field :location_cont ,class:"form-control mb-2" %>
+    <%= f.label :skills_cont, 'スキル' %>
+    <%= f.search_field :skills_cont ,class:"form-control mb-2" %>
+  </div>
+    <%= f.submit '検索', class:"btn btn-info my-3" %>
+  <% end %>
+  </div>
+  
+  <div class="page_entries_info">
+    <%= page_entries_info @resumes %>
+  </div>
+  
+  <div class="row my-5">
+
+    <% if @resumes.empty? %>
+      <p>検索に一致するTWESUMEが見つかりませんでした</p>
+    <% else %>
+
+      <% @resumes.each do |resume| %>
+        <div class="col-lg-6 p-3">
+          <div class="card index-card">
+					  <div class="card-header">
+						  <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="orange">
+						    <li class="nav-item">
+							    <a class="nav-link active show" data-toggle="tab" href="#home<%=resume.id%>" role="tab" aria-selected="false"><%= fa_icon 'address-card' %> カード</a>
+  						  </li>
+	  					  <li class="nav-item">
+		  						<a class="nav-link" data-toggle="tab" href="#profile<%=resume.id%>" role="tab" aria-selected="true"><%= fa_icon 'user' %> ユーザ</a>
+			  			  </li>
+				  		  <li class="nav-item">
+					  			<a class="nav-link" data-toggle="tab" href="#messages<%=resume.id%>" role="tab">自己PR</a>
+						    </li>
+			  			</ul>
+				  	</div>
+					  <div class="card-body">
+				  	  <!-- Tab panes -->
+  						<div class="tab-content text-center">
+	  						<div class="tab-pane active show" id="home<%=resume.id%>" role="tabpanel">
+  
+                  <div id="twesume-show" class="twesume-show">
+                    <div class="twesume-title p-2">
+                      <%="#{resume.user.name}"%>のTWESU<strong>ME</strong>
+                    </div>
+                  
+                    <div class="twesume-container">
+
+                      <% CardItem.all.each do |item| %>
+                        <%# 表示する要素の表示 %>
+                        <% if resume["#{item[:key]}_chk"] %>
+                        <%# 空白の項目は表示しない %>
+                        <div class="twesume-element">
+                          <%= content_tag(:p, item[:val], id:"label-#{item[:key]}", class:"twesume-label")%>
+                          <%= content_tag(:p, resume[item[:key]], id:"item-#{item[:key]}", class:"twesume-item") %>
+                        </div>
+                        <% end %>
+                      <% end %>
+
+                      <% unless resume.note.empty? %>
+                        <div class="twesume-element">
+                          <p id="label-note" class="twesume-label">備考</p>
+                          <p id="item-note" class="twesume-item"><%== newline2br(resume.note) %></p>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+  							</div>
+	  						<div class="tab-pane" id="profile<%=resume.id%>" role="tabpanel">
+		  						<h3>TWESUMEユーザ</h3>
+                  <%= image_tag resume.user.image_url %>
+                  <p><%= resume.user.name %></p>
+                  <p><%= resume.user.nickname %></p>
+                  <%= link_to "#{resume.user.name}のtwitterページに行く", "https://twitter.com/intent/user?user_id=#{resume.user.uid}", class:"btn btn-info my-2", target:["_blank"] %>
+			  				</div>
+				  			<div class="tab-pane" id="messages<%=resume.id%>" role="tabpanel">
+					  			<h3>自己PR<h3>
+                  <p><%== newline2br(resume.comment) %></p>
+						  	</div>
+					  	</div>
+					  </div>
+            <div class="card-footer">
+              <%= link_to "TWESUME詳細ページ", resume_path(resume.slug), class:"btn btn-primary" %>
+            </div>
+				  </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+  
+
+<%= paginate @resumes %>
