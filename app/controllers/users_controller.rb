@@ -2,9 +2,7 @@ class UsersController < ApplicationController
   #ユーザ削除(destroy)は本人のみ
   before_action :correct_user, only: [:edit, :destroy]
   before_action :correct_user_update, only: :update
-  #def show
-  #  @user = User.find_by(nickname: params[:nickname])
-  #end
+
 
   def edit 
     @user = User.find_by(nickname: params[:nickname])
