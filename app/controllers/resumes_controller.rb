@@ -60,7 +60,7 @@ class ResumesController < ApplicationController
   # 検索
   def index
     @q = Resume.ransack(params[:q])
-    @resumes = @q.result.page(params[:page])
+    @resumes = @q.result.page(params[:page]).per(10)
     #debugger
   end
 

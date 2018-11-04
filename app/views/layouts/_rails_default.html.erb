@@ -13,5 +13,8 @@
     </script>
 		<![endif]-->
 
+    <%# Google Analytics %>
+    <%= analytics_init if Rails.env.production? %>
+
 <%# Montserrat & M+Rounded1C %>
 <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c|Montserrat" rel="stylesheet">

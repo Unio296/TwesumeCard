@@ -59,7 +59,7 @@
 <section id="product-view" class="product-view">
 
   <div class="py-5 bg-light text-center">
-    <h3>ポートフォリオ</h3>
+    <h3 class="title">ポートフォリオ</h3>
 
     <div class="container">
       <div class="row">
@@ -69,15 +69,31 @@
         <%# ここが１つのポートフォリオ %>
         <div class="mx-auto col-lg-6 text-center">
           <div class="card mb-4">
-            <h3>
-              <%= product.title %>
-            </h3>
-            <%= image_tag product.image.url, class:"card-img-top p-3", alt:"TWESUME Card Cap" %>
-            <div class="card-body">
+            <div class="card-header">
+            <h4 class="border-bottom"><%= product.title %></h4>
+
+          <%= link_to product.url, target:["_blank"] do %>
+            <div class="image-box">
+            
+              <%= image_tag product.image.url, class:"card-img-top portfolio-image", alt:"TWESUME Card Cap" %>
+              <div class="image-overlay">
+                <div class="product-contents">
+                  <h5><%= "#{product.title}"%></h5>
+                  <p>を見る</p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+            
+            <%#= image_tag product.image.url, class:"card-img-top portfolio-image", alt:"TWESUME Card Cap" %>
+
+
+            </div>
+            <div class="card-body border-bottom border-top">
               <p>
                 <%= product.description %>
               </p>
-              <%= link_to product.title+"を見る", product.url, class:"btn btn-info" , target:["_blank"] %>
+              <%#= link_to product.title+"を見る", product.url, class:"btn btn-dark" , target:["_blank"] %>
             </div>
           </div>
         </div>
@@ -89,6 +105,7 @@
   <% end %>
 </section>
 <%# TWESUMEのTwitterユーザページへのリンク %>
+
 <div class="twitter-pagelink">
   <%= link_to "#{@resume.user.name}のtwitterページに行く", "https://twitter.com/intent/user?user_id=#{@resume.user.uid}", class:"btn btn-primary btn-lg my-4", target:["_blank"] %>
 </div>

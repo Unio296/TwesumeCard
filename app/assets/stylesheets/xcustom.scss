@@ -5,6 +5,30 @@ body{
   text-align: center;
 }
 
+.bg-bird{
+  background-image: image-url('birds.png');
+}
+
+.heading{
+  position: relative;
+  display: inline-block;
+  margin: 10px 0 35px;
+  padding-bottom:10px;
+  letter-spacing: 2px;
+}
+.heading::before,
+.heading::after{
+  content:'';
+  position: absolute;
+  right:0;
+  bottom:0;
+  left:0;
+  border-bottom: 1px solid #999;
+}
+.heading::before{
+  bottom: 5px;
+}
+
 .input-wrapper{
   text-align: left;
 }
@@ -336,3 +360,39 @@ ol.list_parentheses > li:before{
   content: "(" counter(cnt) ") ";
 }
 
+
+ .image-box {
+  
+  background: black;
+  position: relative;
+}
+.image-box img {
+  display: block;
+  width: 100%;
+  opacity: 1;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+}
+.image-box:hover img {
+  opacity: 0.3;
+}
+.image-overlay {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  //text-align: center;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+
+}
+.image-box:hover .image-overlay {
+  opacity: 1;
+}
+.product-contents {
+  padding: 0 10px 5px;
+  color: white;
+}
