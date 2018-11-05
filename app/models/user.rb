@@ -20,12 +20,12 @@ class User < ApplicationRecord
 
       user.name = name
       
-      if User.where(nickname: nickname) #登録がなければ
+      unless User.where(nickname: nickname) #登録がなければ
         user.nickname = nickname            #そのまま設定
       else                                  #登録がある場合
         loop do
           user.nickname = SecureRandom.hex(7) #nicknameにランダム文字列
-          break unless User.where(nickname: nickname).exists?
+          break unless User.where(nickname: user.nickname).exists?
         end
       end
       user.image_url = image_url
