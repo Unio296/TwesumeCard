@@ -94,7 +94,7 @@ class ResumesController < ApplicationController
 
   # pngイメージのPATHを作成する
   def png_path_generate(hash)
-    "images/#{current_user.id}/#{hash}.png"
+    "images/#{current_user.id}/resumes/#{hash}.png"
   end
 
   # bucket名を取得する
