@@ -4,27 +4,29 @@
     <h1 class="top-title">TWESU<strong>ME.</strong></h1>
     
     <p>ポートフォリオでアピールするTwitter転職</p>
-    <div class="row justify-center align-center">
-    <div class ="image-wrapper col-sm-4">
+    <div class="row images-wrapper my-4">
+    <div class ="image-wrapper col-md-4">
       <%= image_tag 'twesume-tweet.png', class:"p-3 img-fluid", alt:"TWESUME Card Cap" %>
     </div>
     <div class="arrow-wrapper align-middle">
-      <%= fa_icon 'angle-double-right', class:"d-none d-sm-block fa-5x" %>
-      <%= fa_icon 'angle-double-down', class:"d-block d-sm-none fa-5x" %>
+      <%= fa_icon 'angle-double-right', class:"d-none d-md-block fa-5x" %>
+      <%= fa_icon 'angle-double-down', class:"d-block d-md-none fa-5x" %>
     </div>
-    <div class ="image-wrapper col-sm-4">
+    <div class ="image-wrapper col-md-4">
       <%= image_tag 'top-example.png', class:"p-3 img-fluid", alt:"TWESUME Page Cap" %>
     </div>
     </div>
 
 
-    <h3>ミニ履歴書を作成してLet's Twitter転職！！</h3>
+    <h4>ミニ履歴書を作成してLet's Twitter転職！！</h4>
     <div class="top-button my-5">
+    <p>転職希望の方はこちらから</p>
     <%= link_to 'auth/twitter', class:"btn btn-primary btn-lg" do %>
       <%= fa_icon 'twitter', text:" でログイン" %>
     <% end %>
     </div>
     <div class="search-button my-5">
+    <p>採用担当の方はこちらから</p>
     <%= link_to resumes_index_path, class:"btn btn-info btn-lg" do %>
       <%= fa_icon 'search', text:" TWESUME一覧" %>
     <% end %>
