@@ -24,41 +24,51 @@
       <%= fa_icon 'twitter', text:" でログイン" %>
     <% end %>
     </div>
+    <div class="search-button my-5">
+    <%= link_to resumes_index_path, class:"btn btn-info btn-lg" do %>
+      <%= fa_icon 'search', text:" TWESUME一覧" %>
+    <% end %>
+    </div>
   </div>
 </section>
 
-<section id="guide" class="guide bg-dark">
+<section id="guide" class="guide bg-dark py-5">
   <h2 class="heading">使い方</h2>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 bg-bird">
-        <%= image_tag 'macbook_example.png', class:"p-3 img-fluid", alt:"TWESUME Page Cap" %>
-      </div>
-      <div class="col-lg-6 align-center">
+  <div class="guide-rows d-flex flex-column">
+    <div class="guide-row d-md-flex flex-md-row-reverse ">
+      <div class="guide-text mx-auto mx-md-0">
         <h5>1. Twitter履歴書ページを作成</h5>
         <p>Twitterアカウントでログインし、TWESUME（Twitter履歴書）とTwitterカードを作ろう！</p>
       </div>
-      <div class="col-lg-6">
+      <div class="guide-image mx-auto mx-md-0">
+        <%= image_tag 'macbook_example.png', class:"p-3 img-fluid", alt:"TWESUME Page Cap" %>
+      </div>
+    </div>
+    <div class="guide-row d-md-flex">
+      <div class="guide-text mx-auto mx-md-0">
         <h5>2. ポートフォリオを投稿</h5>
         <p>自分が開発した、または開発に携わったものを投稿し、アピール力を強化しよう！！</p>
       </div>
-      <div class="col-lg-6 bg-bird">
+      <div class="guide-image mx-auto mx-md-0">
+        <%= image_tag 'portfolio_example.png', class:"p-3 img-fluid", alt:"TWESUME Page Cap" %>
       </div>
-      <div class="col-lg-6 bg-bird">
-        <%= image_tag 'twesume-tweet.png', class:"p-3 img-fluid", alt:"Tweet TWESUME Cap" %>
-      </div>
-      <div class="col-lg-6">
+    </div>
+    <div class="guide-row d-md-flex flex-md-row-reverse">
+      <div class="guide-text mx-auto mx-md-0">
         <h5>3. ツイートで拡散</h5>
         <p>TWESUMEカードをツイートして、採用担当の方に見てもらえるように拡散しよう！！</p>
+      </div>
+      <div class="guide-image mx-auto mx-md-0">
+        <%= image_tag 'twesume-tweet-up.png', class:"p-3 img-fluid", alt:"Tweet TWESUME Cap" %>
       </div>
     </div>
   </div>
 
 </section>
 <%#Twitter Timeline%>
-<section id="twitter-timeline" class="twitter-timeline">
+<section id="twitter-timeline" class="twitter-timeline py-5">
 <h2 class="heading">公式アカウント</h2>
-<div class="w-50 mx-auto">
-<a class="twitter-timeline" href="https://twitter.com/twesume_app?ref_src=twsrc%5Etfw">Tweets by twesume_app</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div class="timeline-wrapper">
+<a class="twitter-timeline" href="https://twitter.com/twesume_work?ref_src=twsrc%5Etfw">Tweets by twesume_app</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 </section>

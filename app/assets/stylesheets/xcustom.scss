@@ -20,6 +20,7 @@ body{
   margin: 10px 0 35px;
   padding-bottom:10px;
   letter-spacing: 2px;
+  font-weight: 700;
 }
 .heading::before,
 .heading::after{
@@ -32,6 +33,31 @@ body{
 }
 .heading::before{
   bottom: 5px;
+}
+
+.guide-row{
+  justify-content: center;
+  align-content: center;
+  align-items:center;
+  margin-bottom:50px;
+}
+
+.guide-image{
+  width:50%;
+  max-width:450px;
+}
+
+.guide-text{
+  width:50%;
+  max-width:450px;
+  padding:20px;
+  align-self: center;
+}
+
+.timeline-wrapper{
+  width: 80%;
+  max-width:650px;
+  margin:0 auto;
 }
 
 .input-wrapper{

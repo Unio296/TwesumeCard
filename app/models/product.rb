@@ -18,7 +18,7 @@ class Product < ApplicationRecord
     #slug発行
     def set_create_slug
       loop do
-        self.slug = SecureRandom.hex(20)
+        self.slug = SecureRandom.hex(7)
         break unless Product.where(slug: slug).exists?
       end
     end
