@@ -9,6 +9,11 @@ body{
   padding:2px 1rem;
 }
 
+.drop-shadow {
+  -webkit-filter: drop-shadow(0px 3px 10px rgba(0,0,0,.8));
+      filter: drop-shadow(0px 0px 10px rgba(0,0,0,.8));
+}
+
 .top-title{
   //font-size:55px;
   letter-spacing: 3px;

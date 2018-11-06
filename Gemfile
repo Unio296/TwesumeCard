@@ -72,6 +72,8 @@ gem 'kaminari'
 # analytics
 gem 'google-analytics-rails'
 
+# twesume.herokuapp.comをtwesume.workに301リダイレクトするため
+gem 'rack-rewrite'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
