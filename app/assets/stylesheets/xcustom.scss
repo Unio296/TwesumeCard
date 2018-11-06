@@ -5,6 +5,19 @@ body{
   text-align: center;
 }
 
+.navbar{
+  padding:2px 1rem;
+}
+
+.top-title{
+  //font-size:55px;
+  letter-spacing: 3px;
+}
+.twitter-user-img{
+  width:32px;
+  height:auto;
+}
+
 .bg-bird{
   background-image: image-url('birds.png');
 }

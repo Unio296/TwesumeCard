@@ -1,7 +1,9 @@
   <header id="header" class="header">  
     <nav class="navbar navbar-expand-sm bg-primary navbar-dark" >
       <div class="container">
+        
         <%= link_to root_path, class: 'navbar-brand notojp' do %>
+          <%= image_tag 'twesumelogo_header.png' %>
           TWESU<strong>ME</strong> <span class="d-none d-md-inline-block">~みんなのTwitter履歴書~</span>
         <% end %>
 
@@ -11,24 +13,30 @@
         <div class="collapse navbar-collapse text-center justify-content-end" id="navbarPrimaryContent">
           <ul class="navbar-nav">
             <%# 検索ページ %>
-            <li class="nav-item mx-1">
-              <%= link_to resumes_index_path, class:"nav-link align-items-center d-flex" do %>
+            <li class="nav-item mr-4">
+              <%= link_to resumes_index_path, class:"nav-link align-items-center h-100" do %>
                 <%= fa_icon "search", text:"TWESUME検索" %>
               <% end %>
             </li>
 
             <% if logged_in? %>
-
-            <li class="nav-item mx-1">
-              <%= link_to edit_user_path(current_user.nickname), class:"nav-link align-items-center d-flex" do %>
-                <%= fa_icon "user-circle",text: current_user.name %>
-              <% end %>
-            </li>
-
-            <li class="nav-item mx-1">
-              <%= link_to logout_path, class:"nav-link align-items-center d-flex" do %>
-                <%= fa_icon "sign-out",text: 'ログアウト' %>
-              <% end %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                <%= image_tag current_user.image_url, class:"twitter-user-img" %><span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                  <%= link_to edit_user_path(current_user.nickname), class:"dropdown-item" do %>
+                    <%= fa_icon "user-circle",text: 'ユーザ設定' %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to logout_path,class:"dropdown-item" do %>
+                    <%= fa_icon "sign-out",text: 'ログアウト' %>
+                  <% end %>
+                </li>
+                
+              </ul>
             </li>
 
             <% else %>
