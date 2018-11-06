@@ -74,12 +74,19 @@
 
           <%= link_to product.url, target:["_blank"] do %>
             <div class="image-box">
-            
-              <%= image_tag product.image.url, class:"card-img-top portfolio-image", alt:"TWESUME Card Cap" %>
+              <% if product.image.url.nil? %>
+                <%= image_tag 'noimage_gray.jpg', class:"card-img-top portfolio-image", alt:"No Image" %>
+              <% else %>
+                <%= image_tag product.image.url, class:"card-img-top portfolio-image", alt:"#{product.title} Cap" %>
+              <% end %>
               <div class="image-overlay">
                 <div class="product-contents">
                   <h5><%= "#{product.title}"%></h5>
+                  <% if product.url.empty? %>
+                  <p>へのリンクは存在しません<p>
+                  <% else %>
                   <p>を見る</p>
+                  <% end %>
                 </div>
               </div>
             </div>

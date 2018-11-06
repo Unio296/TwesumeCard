@@ -80,7 +80,11 @@
               <div class="image-overlay">
                 <div class="product-contents">
                   <h5><%= "#{product.title}"%></h5>
-                  <p>を開く</p>
+                  <% if product.url.empty? %>
+                    <p>へのリンクは設定していません<p>
+                  <% else %>
+                    <p>を開く</p>
+                  <% end %>
                 </div>
               </div>
             </div>
