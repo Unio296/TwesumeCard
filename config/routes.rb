@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   get '/terms', to: 'pages#terms'
   get '/privacy', to: 'pages#privacy'
   # contact ページ
-  get '/contact', to: 'contact#index'              # 入力画面
-  post '/contact/confirm', to: 'contact#confirm'   # 確認画面
-  post '/contact/thanks', to: 'contact#thanks'     # 送信完了画面
+  get '/contact', to: 'pages#contact'              # Twitter公式アカウントへのリンク
+  # contact こちらは完成してるが運用のしやすさからTwitter公式アカウントにしてもらうことにした
+  #get '/contact', to: 'contact#index'              # 入力画面
+  #post '/contact/confirm', to: 'contact#confirm'   # 確認画面
+  #post '/contact/thanks', to: 'contact#thanks'     # 送信完了画面
   
 
   # twitter認証
