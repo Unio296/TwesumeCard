@@ -42,7 +42,7 @@
         <%= f.label :note, '備考' ,class:"mt-2" %>
         <%= f.check_box :note_chk, {class:'d-inline-block'} , true , false %>
         <%= f.text_area :note, class: 'form-control', rows: '10', placeholder: 'その他要望, 追記事項等あれば...' %>
-        <%= f.hidden_field :image_hash %>
+        <%= f.hidden_field :image %>  <%# html2canvasで生成した画像のbase64でエンコードしたデータを入れる %>
       </div>
 
       <div class="col-lg-7 sm-hidden">
@@ -211,49 +211,25 @@
       };
     }).change();
 
-
-
     //カード画像生成
     document.createImage = () => {
       const twesumeElement = document.querySelector('#twesume'); //カードの要素取得
       const canvasElement = document.querySelector('#canvas'); //生成画像配置要素取得
       html2canvas(twesumeElement).then(canvas => { //#twesumeをcanvasに画像として生成
-        canvasElement.src = canvas.toDataURL();
+        canvasElement.src = canvas.toDataURL();     //生成した画像を#canvasに表示
+        $('#resume_image').val(canvas.toDataURL()); //imageにbase64のデータを格納
       });
     };
 
+    //投稿ボタンの処理
     $('#form-submit').click(function () {
       //二重投稿できないようにボタンを無効
       $(this).prop("disabled",true);
-      //データをPOSTして画像をS3に保存
 
       //ロード画面表示
       $('#loading').show();
 
-      hash = $('#resume_image_hash').val();
-
-      var canvas = document.getElementById("canvas"); //canvasを取得
-      var imgData = canvas.src; //base64形式の画像データ
-
-      // hidden_fieldに値を設定
-      //$('#resume_image_hash').val(hash);
-
-      $.ajax({
-        url: '/image',
-        type: 'POST',
-        dataType: 'json',
-        async: true,
-        data: {
-          imgData: imgData,
-          hash: hash
-        }
-      }).done(function (result) {
-        $("#<%=yield(:form_id)%>").submit();
-        return true;
-      }).fail(function (result) {
-        $('#loading').hide();
-        return false;
-      });
+      $("#<%=yield(:form_id)%>").submit();  //submit
 
     });
 

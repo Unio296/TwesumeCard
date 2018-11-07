@@ -4,7 +4,7 @@ class ResumesController < ApplicationController
 
   def new
     @resume = current_user.resumes.build
-    @resume.set_image_hash
+    #@resume.set_image_hash
   end
 
   def create
@@ -23,12 +23,11 @@ class ResumesController < ApplicationController
   end
 
   def edit
-    #@resume = Resume.find_by(slug: params[:slug])
+    # @resumeはcorrect_userで取得済
   end
 
   def update
-    #@resume = Resume.find_by(slug: params[:slug])
-    
+    # @resumeはcorrect_userで取得済
     if @resume.update_attributes(resume_params)
       flash[:success] = "カードを更新しました"
       redirect_to resume_path(@resume.slug)
@@ -39,9 +38,8 @@ class ResumesController < ApplicationController
   end
 
   def destroy
-    #@resume = Resume.find_by(slug: params[:slug])
+    # @resumeはcorrect_userで取得済
     if @resume.destroy
-      degenerate(@resume.image_hash)    #S3から画像を削除
       flash[:success] = "カードを削除しました"
       redirect_to root_path
     else
@@ -70,47 +68,8 @@ class ResumesController < ApplicationController
                                     :skills, :capacity, :languages, :employment_pattern, :note, :comment,
                                     :job_type_chk, :location_chk, :desired_salary_chk, :timing_chk, :age_chk, 
                                     :skills_chk, :capacity_chk, :languages_chk, :employment_pattern_chk, :note_chk, 
-                                    :image_hash)
+                                    :image)
     end
-
-    def to_uploaded(base64_param)
-      content_type, string_data = base64_param.match(/data:(.*?);(?:.*?),(.*)$/).captures
-      tempfile = Tempfile.new
-      tempfile.binmode
-      tempfile << Base64.decode64(string_data)
-      file_param = { type: content_type, tempfile: tempfile }
-      ActionDispatch::Http::UploadedFile.new(file_param)
-    end
-
-      # S3 Bucket 内に画像を作成
-  def generate(image_uri, hash)
-    bucket.files.create(key: png_path_generate(hash), public: true, body: open(image_uri))
-  end
-
-  # S3 Bucket 内の画像を削除
-  def degenerate(hash)
-    bucket.files.get(png_path_generate(hash)).destroy
-  end
-
-  # pngイメージのPATHを作成する
-  def png_path_generate(hash)
-    "images/#{current_user.id}/resumes/#{hash}.png"
-  end
-
-  # bucket名を取得する
-  def bucket
-    storage.directories.get("twesume-storage")
-  end
-
-  # storageを生成する
-  def storage
-    Fog::Storage.new(
-      provider: 'AWS',
-      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-      region: 'ap-northeast-1'
-    )
-  end
 
   #current_userが@userと一致するか
   def correct_user

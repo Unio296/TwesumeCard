@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2018_10_27_114105) do
     t.string "employment_pattern"
     t.text "note"
     t.text "comment"
-    t.string "image_hash"
+    t.string "image"
     t.boolean "job_type_chk", default: true
     t.boolean "location_chk", default: true
     t.boolean "desired_salary_chk", default: true

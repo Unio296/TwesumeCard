@@ -27,7 +27,7 @@
             
             <div class="card-body">
               
-              <%= image_tag resume_image_url(resume), class:"card-img-top", alt:"TWESUME Card Cap" %>
+              <%= image_tag resume.image.url, class:"card-img-top", alt:"TWESUME Card Cap" %>
               <div class="card-footer">
                 <%= link_to 'TWESUMEページ',resume_path(resume.slug), class:"btn btn-primary" %>
               </div>
