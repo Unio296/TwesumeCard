@@ -458,3 +458,7 @@ ol.list_parentheses > li:before{
   padding: 0 10px 5px;
   color: white;
 }
+
+.has-error > input{
+  border-color: #FF3636;
+}

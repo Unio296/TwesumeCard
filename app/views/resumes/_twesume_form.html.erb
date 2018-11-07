@@ -12,48 +12,36 @@
     <div class="row">
       <div class="input-wrapper p-4 col-lg-5">
 
-        <% if @resume.errors.any? %>
-        <div class="alert alert-danger" role="alert">
-          <strong>入力内容にエラーがあります</strong>
-          <ul>
-            <% @resume.errors.each do |attr, msg| %>
-            <li>
-              <%= msg %>
-            </li>
-            <% end %>
-          </ul>
-        </div>
-        <% end %>
         <%= f.label :job_type, '職種' %>
         <%= f.check_box :job_type_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :job_type, class: 'form-control form-control-error mb-2', placeholder: 'エンジニア' %>
-        <%= f.label :location, '勤務地' %>
+        <%= f.text_field :job_type, class: 'form-control', placeholder: 'エンジニア' %>
+        <%= f.label :location, '勤務地' ,class:"mt-2" %>
         <%= f.check_box :location_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :location, class: 'form-control mb-2', placeholder: '大阪、東京' %>
+        <%= f.text_field :location, class: 'form-control', placeholder: '大阪、東京' %>
         <%= f.label :desired_salary, '年収' %>
         <%= f.check_box :desired_salary_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :desired_salary, class: 'form-control mb-2', placeholder: '例：500万以上' %>
-        <%= f.label :timing, '転職時期' %>
+        <%= f.text_field :desired_salary, class: 'form-control', placeholder: '例：500万以上' %>
+        <%= f.label :timing, '転職時期' ,class:"mt-2" %>
         <%= f.check_box :timing_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :timing, class: 'form-control mb-2', placeholder: '3ヶ月後' %>
-        <%= f.label :age, '年齢' %>
+        <%= f.text_field :timing, class: 'form-control', placeholder: '3ヶ月後' %>
+        <%= f.label :age, '年齢' ,class:"mt-2" %>
         <%= f.check_box :age_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :age, class: 'form-control mb-2', placeholder: '30代' %>
-        <%= f.label :skills, 'スキル' %>
+        <%= f.text_field :age, class: 'form-control', placeholder: '30代' %>
+        <%= f.label :skills, 'スキル' ,class:"mt-2" %>
         <%= f.check_box :skills_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :skills, class: 'form-control mb-2', placeholder: 'HTML/CSS, jQuery, BootStrap, Ruby, Ruby on Rails' %>
-        <%= f.label :capacity, '資格' %>
+        <%= f.text_field :skills, class: 'form-control', placeholder: 'HTML/CSS, jQuery, BootStrap, Ruby, Ruby on Rails' %>
+        <%= f.label :capacity, '資格' ,class:"mt-2" %>
         <%= f.check_box :capacity_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :capacity, class: 'form-control mb-2', placeholder: '応用情報技術者, 基本情報技術者' %>
-        <%= f.label :languages, '言語' %>
+        <%= f.text_field :capacity, class: 'form-control', placeholder: '応用情報技術者, 基本情報技術者' %>
+        <%= f.label :languages, '言語' ,class:"mt-2" %>
         <%= f.check_box :languages_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :languages, class: 'form-control mb-2', placeholder: '日本語, 英語, 中国語' %>
-        <%= f.label :employment_pattern, '雇用形態' %>
+        <%= f.text_field :languages, class: 'form-control', placeholder: '日本語, 英語, 中国語' %>
+        <%= f.label :employment_pattern, '雇用形態' ,class:"mt-2" %>
         <%= f.check_box :employment_pattern_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :employment_pattern, class: 'form-control mb-2', placeholder: '正社員, 契約社員' %>
-        <%= f.label :note, '備考' %>
+        <%= f.text_field :employment_pattern, class: 'form-control', placeholder: '正社員, 契約社員' %>
+        <%= f.label :note, '備考' ,class:"mt-2" %>
         <%= f.check_box :note_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_area :note, class: 'form-control mb-2', rows: '10', placeholder: 'その他要望, 追記事項等あれば...' %>
+        <%= f.text_area :note, class: 'form-control', rows: '10', placeholder: 'その他要望, 追記事項等あれば...' %>
         <%= f.hidden_field :image_hash %>
       </div>
 
@@ -117,8 +105,8 @@
 <div class="row">
   <div class="container">
     <div class="input-wrapper col-lg-12">
-      <%= f.label :note, '自己PR' %>
-      <%= f.text_area :comment, class: 'form-control mb-2', rows: '10', placeholder: 'こちらの内容はカード内には記載されませんが、カードのURL先ページに挿入されます' %>
+      <%= f.label :note, '自己PR' ,class:"mt-2" %>
+      <%= f.text_area :comment, class: 'form-control', rows: '10', placeholder: 'こちらの内容はカード内には記載されませんが、カードのURL先ページに挿入されます' %>
     </div>
   </div>
 </div>

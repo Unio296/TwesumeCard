@@ -8,26 +8,13 @@
       <div class="p-4 col-lg-5 mx-auto input-wrapper">
         <%= form_for @product, url: yield(:url) do |f| %>
 
-        <% if @product.errors.any? %>
-        <div class="alert alert-danger" role="alert">
-          <strong>入力内容にエラーがあります</strong>
-          <ul>
-            <% @product.errors.each do |attr, msg| %>
-            <li>
-              <%= msg %>
-            </li>
-            <% end %>
-          </ul>
-        </div>
-        <% end %>
-
-        <%= f.label :title, 'ポートフォリオ名' %>
-        <%= f.text_field :title, class: 'form-control mb-3', placeholder: 'TWESUME CARD' %>
-        <%= f.label :url, 'URL'%>
-        <%= f.text_field :url, class: 'form-control mb-3', placeholder: 'https://twesumecard.com' %>
-        <%= f.label :description, 'このポートフォリオの説明' %>
-        <%= f.text_area :description, class: 'form-control mb-3', rows:'5', placeholder: '仕事を辞めたすぎてムシャクシャして開発したサービス'  %>
-        <%= f.label :image, 'ポートフォリオの画像' %>
+        <%= f.label :title, 'ポートフォリオ名'%>
+        <%= f.text_field :title, class: 'form-control', placeholder: 'TWESUME CARD' %>
+        <%= f.label :url, 'URL' ,class:"mt-3" %>
+        <%= f.text_field :url, class: 'form-control', placeholder: 'https://twesumecard.com' %>
+        <%= f.label :description, 'このポートフォリオの説明' ,class:"mt-3" %>
+        <%= f.text_area :description, class: 'form-control', rows:'5', placeholder: '仕事を辞めたすぎてムシャクシャして開発したサービス'  %>
+        <%= f.label :image, 'ポートフォリオの画像' ,class:"mt-3" %>
         <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %><br>
 
         <%= f.submit yield(:button_text) ,class:"btn btn-primary mt-3" %>
