@@ -3,19 +3,21 @@
       <div class="container">
         
         <%= link_to root_path, class: 'navbar-brand notojp' do %>
-          <%= image_tag 'twesumelogo_header.png' %>
-          TWESU<strong>ME</strong> <span class="d-none d-md-inline-block">~みんなのTwitter履歴書~</span>
+          <div class="header-logo">
+            <%= image_tag 'twesumelogo_header.png' %>
+            TWESU<strong>ME</strong> <span class="d-none d-md-inline-block">~みんなのTwitter履歴書~</span>
+          </div>
         <% end %>
 
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarPrimaryContent">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse text-center justify-content-end" id="navbarPrimaryContent">
+        <div class="nav-menu collapse navbar-collapse text-center justify-content-end" id="navbarPrimaryContent">
           <ul class="navbar-nav">
             <%# 検索ページ %>
             <li class="nav-item mr-4">
               <%= link_to resumes_index_path, class:"nav-link align-items-center h-100" do %>
-                <%= fa_icon "search", text:"TWESUME検索" %>
+                <div class="nav-text"><%= fa_icon "search" %> TWESUME検索</div>
               <% end %>
             </li>
 
@@ -42,7 +44,7 @@
             <% else %>
             <li class="nav-item mx-1">
               <%= link_to '/auth/twitter', class:"nav-link" do %>
-                <%= fa_icon 'twitter', text:" ログイン" %>
+                <div class="nav-text"><%= fa_icon 'twitter' %>ログイン</div>
               <% end %>
             </li>
             <% end %>

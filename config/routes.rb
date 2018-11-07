@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get '/privacy', to: 'pages#privacy'
   # contact ページ
   get '/contact', to: 'pages#contact'              # Twitter公式アカウントへのリンク
-  # contact こちらは完成してるが運用のしやすさからTwitter公式アカウントにしてもらうことにした
+  
+  # contact こちらも完成してるが運用のしやすさからTwitter公式アカウントにしてもらうことにした
   #get '/contact', to: 'contact#index'              # 入力画面
   #post '/contact/confirm', to: 'contact#confirm'   # 確認画面
   #post '/contact/thanks', to: 'contact#thanks'     # 送信完了画面
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   
-  
-  post '/image', to: 'resumes#image', as:'image'
+  # carrierwave経由で投稿するようにしたので不要になった
+  #post '/image', to: 'resumes#image', as:'image'
 
 end

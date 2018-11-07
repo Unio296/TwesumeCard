@@ -40,10 +40,10 @@ class ResumesController < ApplicationController
   def destroy
     # @resumeはcorrect_userで取得済
     if @resume.destroy
-      flash[:success] = "カードを削除しました"
+      flash[:success] = "TWESUMEを削除しました"
       redirect_to root_path
     else
-      flash[:danger] = "カードを削除できませんでした"
+      flash[:danger] = "TWESUMEを削除できませんでした"
       redirect_to resume_path(@resume.slug)
     end
   end
