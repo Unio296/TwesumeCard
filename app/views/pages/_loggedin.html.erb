@@ -2,7 +2,7 @@
 <section id="create-section" class="create-section">
   <div class="py-5">
     <h2 class="heading">TWESUME 作成</h2>
-    <p>こちらからTWESUMEページとツイートするカードを作成できます。</p>
+    <p>こちらからTWESUMEページとツイートするカードを作成できます</p>
     <%= link_to '新規作成', new_user_resume_path(current_user.nickname) ,class:"btn btn-primary m-3" %>
   </div>
 </section>
@@ -10,12 +10,12 @@
   <div class="py-5 bg-light">
     <div class="container">
       <div class="row">
-        <div class="mx-auto col-lg-8 text-center">
+        <div class="mx-auto col-lg-8">
           <h2 class="heading">TWESUME 一覧</h2>
         </div>
       </div>
       <% if @resumes.empty? %>
-        <p>作成したカードはありません</p>
+        <p>作成したTWESUMEはありません</p>
         <%#= link_to 'カード新規作成', new_user_resume_path(current_user.nickname) ,class:"btn btn-primary" %>
       <% else %>
       <p class="mb-4">あなたが作成したTWESUMEの一覧です</p>
@@ -44,7 +44,7 @@
   <section id="product-create" class="product-create">
     <div class="py-5">
     <h2 class="heading">ポートフォリオ投稿</h2>
-    <p>こちらに投稿したポートフォリオがTWESUMEページの下部に表示されます</p>
+    <p>投稿したポートフォリオはTWESUMEページの下部に表示されます</p>
     <%= link_to '新規投稿', new_user_product_path(current_user.nickname) ,class:"btn btn-primary m-3" %>
   </div>
   </section>

@@ -6,21 +6,22 @@
 <%= form_for @resume, url: yield(:url) do |f| %>
 <div class="py-3">
   <div class="container">
-    <h2 class="mb-4 text-center">
+    <h2 class="heading">
       <%= yield(:page_heading) %>
     </h2>
+    <p>ここではツイートの際に表示する画像、ツイートのリンク先ページを同時に作成します</p>
     <div class="row">
       <div class="input-wrapper p-4 col-lg-5">
-
+        
         <%= f.label :job_type, '職種' %>
         <%= f.check_box :job_type_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :job_type, class: 'form-control', placeholder: 'エンジニア' %>
+        <%= f.text_field :job_type, class: 'form-control', placeholder: '例：Webエンジニア, フロントエンドエンジニア...' %>
         <%= f.label :location, '勤務地' ,class:"mt-2" %>
         <%= f.check_box :location_chk, {class:'d-inline-block'} , true , false %>
         <%= f.text_field :location, class: 'form-control', placeholder: '大阪、東京' %>
         <%= f.label :desired_salary, '年収' %>
         <%= f.check_box :desired_salary_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :desired_salary, class: 'form-control', placeholder: '例：500万以上' %>
+        <%= f.text_field :desired_salary, class: 'form-control', placeholder: '500万以上' %>
         <%= f.label :timing, '転職時期' ,class:"mt-2" %>
         <%= f.check_box :timing_chk, {class:'d-inline-block'} , true , false %>
         <%= f.text_field :timing, class: 'form-control', placeholder: '3ヶ月後' %>
@@ -29,10 +30,10 @@
         <%= f.text_field :age, class: 'form-control', placeholder: '30代' %>
         <%= f.label :skills, 'スキル' ,class:"mt-2" %>
         <%= f.check_box :skills_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :skills, class: 'form-control', placeholder: 'HTML/CSS, jQuery, BootStrap, Ruby, Ruby on Rails' %>
+        <%= f.text_field :skills, class: 'form-control', placeholder: 'HTML/CSS, Ruby, Ruby on Rails' %>
         <%= f.label :capacity, '資格' ,class:"mt-2" %>
         <%= f.check_box :capacity_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :capacity, class: 'form-control', placeholder: '応用情報技術者, 基本情報技術者' %>
+        <%= f.text_field :capacity, class: 'form-control', placeholder: '基本情報技術者, 応用情報技術者' %>
         <%= f.label :languages, '言語' ,class:"mt-2" %>
         <%= f.check_box :languages_chk, {class:'d-inline-block'} , true , false %>
         <%= f.text_field :languages, class: 'form-control', placeholder: '日本語, 英語, 中国語' %>
@@ -41,7 +42,7 @@
         <%= f.text_field :employment_pattern, class: 'form-control', placeholder: '正社員, 契約社員' %>
         <%= f.label :note, '備考' ,class:"mt-2" %>
         <%= f.check_box :note_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_area :note, class: 'form-control', rows: '10', placeholder: 'その他要望, 追記事項等あれば...' %>
+        <%= f.text_area :note, class: 'form-control', rows: '10', placeholder: "その他要望, 追記事項等あれば...\r\n完全週休２日制、SES以外, リモート可優先..." %>
         <%= f.hidden_field :image %>  <%# html2canvasで生成した画像のbase64でエンコードしたデータを入れる %>
       </div>
 
@@ -106,7 +107,7 @@
   <div class="container">
     <div class="input-wrapper col-lg-12">
       <%= f.label :note, '自己PR' ,class:"mt-2" %>
-      <%= f.text_area :comment, class: 'form-control', rows: '10', placeholder: 'こちらの内容はカード内には記載されませんが、カードのURL先ページに挿入されます' %>
+      <%= f.text_area :comment, class: 'form-control', rows: '10', placeholder: 'こちらの内容はカード内には記載されませんが、TWESUMEページの自己PR欄に記載されます' %>
     </div>
   </div>
 </div>

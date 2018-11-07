@@ -9,11 +9,11 @@
         <%= form_for @product, url: yield(:url) do |f| %>
 
         <%= f.label :title, 'ポートフォリオ名'%>
-        <%= f.text_field :title, class: 'form-control', placeholder: 'TWESUME CARD' %>
+        <%= f.text_field :title, class: 'form-control', placeholder: '例：TWESUME' %>
         <%= f.label :url, 'URL' ,class:"mt-3" %>
         <%= f.text_field :url, class: 'form-control', placeholder: 'https://twesumecard.com' %>
-        <%= f.label :description, 'このポートフォリオの説明' ,class:"mt-3" %>
-        <%= f.text_area :description, class: 'form-control', rows:'5', placeholder: '仕事を辞めたすぎてムシャクシャして開発したサービス'  %>
+        <%= f.label :description, 'ポートフォリオの説明' ,class:"mt-3" %>
+        <%= f.text_area :description, class: 'form-control', rows:'5', placeholder: "ポートフォリオの詳細やアピールしたいことを記入してください。\r\n例：Twitter転職を支援する逆求人サービス。開発期間約１ヶ月。"  %>
         <%= f.label :image, 'ポートフォリオの画像' ,class:"mt-3" %>
         <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %><br>
 

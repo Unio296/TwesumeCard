@@ -16,6 +16,12 @@ module TwesumeCard
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
   
+    #日本時刻設定
+    config.time_zone = 'Tokyo'
+
+    #日本語化
+    config.i18n.default_locale = :ja
+
     #validation error時の表示設定
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       if instance.kind_of?(ActionView::Helpers::Tags::Label)

@@ -10,7 +10,7 @@ class ResumesController < ApplicationController
   def create
     @resume = current_user.resumes.build(resume_params)
     if @resume.save                                                           #resumeを保存
-      flash[:success] = "Resume created!"                                     #flashに成功メッセージ
+      flash[:success] = "TWESUMEを作成しました"                                 #flashに成功メッセージ
       redirect_to root_url                                                    #rootにリダイレクト
     else                                                                      #保存できなかった場合
       render 'new'                                                            #homeアクションでrender
@@ -29,10 +29,10 @@ class ResumesController < ApplicationController
   def update
     # @resumeはcorrect_userで取得済
     if @resume.update_attributes(resume_params)
-      flash[:success] = "カードを更新しました"
+      flash[:success] = "TWESUMEを更新しました"
       redirect_to resume_path(@resume.slug)
     else
-      flash[:danger] = "カードを更新できませんでした"
+      flash[:danger] = "TWESUMEを更新できませんでした"
       render 'edit'
     end
   end

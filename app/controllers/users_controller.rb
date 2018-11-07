@@ -11,12 +11,12 @@ class UsersController < ApplicationController
   def update
     #correct_user_updateで@user取得
     if @user.update_attributes(user_params)
-      flash[:success]= "Profile Updated"
+      flash[:success]= "ユーザ設定を変更しました"
       redirect_to root_path
     else
       #update_attributesでnicknameが無くなるとeditでエラーが出るので再取得
       @user.nickname = User.find_by(nickname: params[:nickname]).nickname
-      flash.now[:danger] = "Update Error..."
+      flash.now[:danger] = "ユーザ設定を変更できませんでした"
       #debugger
       render 'edit'
     end
