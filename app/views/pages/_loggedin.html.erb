@@ -29,7 +29,20 @@
               
               <%= image_tag resume.image.url, class:"card-img-top", alt:"TWESUME Card Cap" %>
               <div class="card-footer">
-                <%= link_to 'TWESUMEページ',resume_path(resume.slug), class:"btn btn-primary" %>
+                <%= link_to 'TWESUMEページ',resume_path(resume.slug), class:"btn btn-primary mb-2" %><br>
+
+                  <%= link_to "https://twitter.com/share?text=%23twesumecard%20%23hiyokonitsuduke%20%23Twitter転職&url=#{resume_url(resume.slug)}?u=#{resume.update_count}", class:"btn btn-info mb-1", target:["_blank"] do %>
+                    <%= fa_icon 'twitter',text:" 投稿" %>
+                  <% end %>
+
+                  <%= link_to edit_resume_path(resume.slug), class:"btn btn-success mb-1" do %>
+                    <%= fa_icon 'edit', text:" 編集" %>
+                  <% end %>
+
+                  <%= link_to resume_path(resume.slug), method: :delete, 
+                      data: {confirm: "このTWESUMEを削除します。よろしいですか？"}, class:"btn btn-danger mb-1" do%>
+                    <%= fa_icon 'trash', text:" 削除" %>
+                  <% end %>
               </div>
                 
             </div>
