@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Carrierwave
 gem 'carrierwave'
+gem 'carrierwave-base64'
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
 # Use fog
