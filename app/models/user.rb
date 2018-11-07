@@ -19,8 +19,7 @@ class User < ApplicationRecord
     self.find_or_create_by(provider: provider, uid: uid) do |user|
 
       user.name = name
-      
-      unless User.where(nickname: nickname) #登録がなければ
+      unless User.where(nickname: nickname).exists? #登録がなければ
         user.nickname = nickname            #そのまま設定
       else                                  #登録がある場合
         loop do
