@@ -17,11 +17,13 @@
           <% end %>
 
 <%= form_for @user,url: user_path(@user.nickname), html:{method: "patch"} do |f| %>
-<%= f.label :name ,'ユーザ名' %>
-  <%= f.hidden_field :id %>
+  <%= f.hidden_field :id %><%# ユーザの設定を変更する場合、idをキーにしてuserを検索する %>
+  <%= f.label :name ,'ユーザ名' %>
   <%= f.text_field :name ,class: 'form-control mb-3'%>
+
   <%= f.label :nickname, 'ユーザID' %>
   <%= f.text_field :nickname ,class: 'form-control mb-3'%>
+  
   <%= f.submit '更新', class: 'btn btn-primary' %>
 <% end %>
     </div>

@@ -14,7 +14,10 @@ class UsersController < ApplicationController
       flash[:success]= "Profile Updated"
       redirect_to root_path
     else
+      #update_attributesでnicknameが無くなるとeditでエラーが出るので再取得
+      @user.nickname = User.find_by(nickname: params[:nickname]).nickname
       flash.now[:danger] = "Update Error..."
+      #debugger
       render 'edit'
     end
   end
@@ -45,6 +48,7 @@ class UsersController < ApplicationController
 
     def correct_user_update
       @user = User.find(params[:user][:id])
+      #debugger
       unless current_user?(@user) then
         flash[:danger] = "あなたは#{@user.nickname}ではありません"
         redirect_to root_path

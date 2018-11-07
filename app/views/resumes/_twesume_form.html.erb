@@ -26,7 +26,7 @@
         <% end %>
         <%= f.label :job_type, '職種' %>
         <%= f.check_box :job_type_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :job_type, class: 'form-control mb-2', placeholder: 'エンジニア' %>
+        <%= f.text_field :job_type, class: 'form-control form-control-error mb-2', placeholder: 'エンジニア' %>
         <%= f.label :location, '勤務地' %>
         <%= f.check_box :location_chk, {class:'d-inline-block'} , true , false %>
         <%= f.text_field :location, class: 'form-control mb-2', placeholder: '大阪、東京' %>
