@@ -105,7 +105,7 @@
 
           </div>
             <div class="card-body">
-            <p><%= product.description %></p>
+            <p><%== newline2br(product.description) %></p>
 
             <%= link_to edit_product_path(product.slug), class:"btn btn-success" do %>
               <%= fa_icon 'edit',text:" 編集" %>
