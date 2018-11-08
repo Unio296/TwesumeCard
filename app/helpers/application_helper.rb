@@ -14,5 +14,18 @@ module ApplicationHelper
     str.gsub(/(\r\n|\r|\n)/, "<br>")
   end
 
+  def ads_responsive
+  raw('<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- responsive -->
+  <ins class="adsbygoogle"
+   style="display:block"
+   data-ad-client="ca-pub-5354980582576230"
+   data-ad-slot="7648483672"
+   data-ad-format="auto"
+   data-full-width-responsive="true"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>')
+  end
 
 end
