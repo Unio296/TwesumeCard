@@ -124,7 +124,7 @@
 <% if current_user?(@resume.user) %>
 <div class="owner-fixed shadow p-3 ">
   <p class="text-muted">この領域は作成者にのみ表示されます</p>
-  <%= link_to "https://twitter.com/share?text=%23twesumecard%20%23hiyokonitsuduke%20%23Twitter転職&url=#{resume_url(@resume.slug)}?u=#{@resume.update_count}", class:"btn btn-info mb-1", target:["_blank"] do %>
+  <%= link_to "https://twitter.com/share?text=%23TwesumeCards%20%23hiyokonitsuduke%20%23Twitter転職&url=#{resume_url(@resume.slug)}?u=#{@resume.update_count}", class:"btn btn-info mb-1", target:["_blank"] do %>
   <%= fa_icon 'twitter',text:" 投稿" %>
   <% end %>
 
