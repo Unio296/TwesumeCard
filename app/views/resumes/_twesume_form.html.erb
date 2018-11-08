@@ -22,15 +22,15 @@
         <%= f.label :desired_salary, '年収' %>
         <%= f.check_box :desired_salary_chk, {class:'d-inline-block'} , true , false %>
         <%= f.text_field :desired_salary, class: 'form-control', placeholder: '500万以上' %>
-        <%= f.label :timing, '転職時期' ,class:"mt-2" %>
-        <%= f.check_box :timing_chk, {class:'d-inline-block'} , true , false %>
-        <%= f.text_field :timing, class: 'form-control', placeholder: '3ヶ月後' %>
         <%= f.label :age, '年齢' ,class:"mt-2" %>
         <%= f.check_box :age_chk, {class:'d-inline-block'} , true , false %>
         <%= f.text_field :age, class: 'form-control', placeholder: '30代' %>
         <%= f.label :skills, 'スキル' ,class:"mt-2" %>
         <%= f.check_box :skills_chk, {class:'d-inline-block'} , true , false %>
         <%= f.text_field :skills, class: 'form-control', placeholder: 'HTML/CSS, Ruby, Ruby on Rails' %>
+        <%= f.label :timing, '転職時期' ,class:"mt-2" %>
+        <%= f.check_box :timing_chk, {class:'d-inline-block'} , true , false %>
+        <%= f.text_field :timing, class: 'form-control', placeholder: '3ヶ月後' %>
         <%= f.label :capacity, '資格' ,class:"mt-2" %>
         <%= f.check_box :capacity_chk, {class:'d-inline-block'} , true , false %>
         <%= f.text_field :capacity, class: 'form-control', placeholder: '基本情報技術者, 応用情報技術者' %>
@@ -68,16 +68,16 @@
                 <p id="item-desired_salary" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
-                <p id="label-timing" class="twesume-label">転職時期</p>
-                <p id="item-timing" class="twesume-item"></p>
-              </div>
-              <div class="twesume-element">
                 <p id="label-age" class="twesume-label">年齢</p>
                 <p id="item-age" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
                 <p id="label-skills" class="twesume-label">スキル</p>
                 <p id="item-skills" class="twesume-item"></p>
+              </div>
+              <div class="twesume-element">
+                <p id="label-timing" class="twesume-label">転職時期</p>
+                <p id="item-timing" class="twesume-item"></p>
               </div>
               <div class="twesume-element">
                 <p id="label-capacity" class="twesume-label">資格</p>
