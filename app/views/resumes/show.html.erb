@@ -112,15 +112,10 @@
   <% end %>
 </section>
 
-
-<%= ads_responsive %>
-
 <%# TWESUMEのTwitterユーザページへのリンク %>
 <div class="twitter-pagelink">
   <%= link_to "#{@resume.user.name}のtwitterページに行く", "https://twitter.com/intent/user?user_id=#{@resume.user.uid}", class:"btn btn-primary btn-lg my-4", target:["_blank"] %>
 </div>
-
-
 
 <%# fixedでツイートボタンや、編集や削除へのリンクのウインドウを表示 %>
 
@@ -141,3 +136,5 @@
   <% end %>
   <% end %>
 </div>
+
+<%= ads_responsive %>

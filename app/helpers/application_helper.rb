@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def ads_responsive
-  raw('<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  raw('<div class="ads-responsive"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- responsive -->
   <ins class="adsbygoogle"
    style="display:block"
@@ -25,7 +25,7 @@ module ApplicationHelper
    data-full-width-responsive="true"></ins>
   <script>
   (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>')
+  </script></div>')
   end
 
 end
