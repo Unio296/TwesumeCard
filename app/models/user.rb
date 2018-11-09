@@ -17,7 +17,7 @@ class User < ApplicationRecord
     nickname = auth[:info][:nickname]
     #image_url = auth[:info][:image]  #httpsの画像を利用するため下記に変更
     image_url = auth[:extra][:raw_info][:profile_image_url_https]
-    debugger
+    
     self.find_or_create_by(provider: provider, uid: uid) do |user|
 
       user.name = name
