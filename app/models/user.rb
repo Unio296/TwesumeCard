@@ -10,12 +10,14 @@ class User < ApplicationRecord
 
   #twitter認証
   def self.find_or_create_from_auth(auth)
+    
     provider = auth[:provider]
     uid = auth[:uid]
     name = auth[:info][:name]
     nickname = auth[:info][:nickname]
-    image_url = auth[:info][:image]
-
+    #image_url = auth[:info][:image]  #httpsの画像を利用するため下記に変更
+    image_url = auth[:extra][:raw_info][:profile_image_url_https]
+    debugger
     self.find_or_create_by(provider: provider, uid: uid) do |user|
 
       user.name = name
