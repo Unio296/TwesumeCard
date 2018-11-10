@@ -19,7 +19,8 @@ Rails.application.routes.draw do
 
   #App Routes
   get '/resumes/index', to: 'resumes#index'
-  resources :users, param: :nickname, only:[:edit, :update, :destroy], shallow: true do
+
+  resource :users, param: :nickname, only:[:edit, :update, :destroy], shallow: true do
     resources :resumes, param: :slug, only:[:new, :create, :show, :edit, :update, :destroy] do
     end
     resources :products, param: :slug, only:[:new, :create, :edit, :update, :destroy] do

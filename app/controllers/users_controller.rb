@@ -1,29 +1,28 @@
 class UsersController < ApplicationController
-  #ユーザ削除(destroy)は本人のみ
-  before_action :correct_user, only: [:edit, :destroy]
-  before_action :correct_user_update, only: :update
+  #user情報に関わる全ての操作はcurrent_userのみ許可
+  before_action :logged_in_user, only: [:edit, :update, :destroy]
+  before_action :get_current_user, only: [:edit, :update, :destroy]
+  #before_action :correct_user, only: [:edit, :destroy]
+  #before_action :correct_user_update, only: :update
 
 
   def edit 
-    @user = User.find_by(nickname: params[:nickname])
+    #before_action get_current_userで取得
   end
 
   def update
-    #correct_user_updateで@user取得
+    #before_action get_current_userで取得
     if @user.update_attributes(user_params)
       flash[:success]= "ユーザ設定を変更しました"
       redirect_to root_path
     else
-      #update_attributesでnicknameが無くなるとeditでエラーが出るので再取得
-      @user.nickname = User.find_by(nickname: params[:nickname]).nickname
       flash.now[:danger] = "ユーザ設定を変更できませんでした"
-      #debugger
       render 'edit'
     end
   end
 
   def destroy
-    #correct_userで@user取得
+    #before_action get_current_userで取得
     @user.destroy
     session[:user_id] = nil #sessionも削除
     flash[:success] = "ユーザを削除しました"
@@ -36,22 +35,10 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :nickname)
     end
 
-    #current_userが@userと一致するか
-    def correct_user
-      @user = User.find_by(nickname: params[:nickname])
-      #debugger
-      unless current_user?(@user) then
-        flash[:danger] = "あなたは#{@user.nickname}ではありません"
-        redirect_to root_path
-      end
+    #logged_in_userはapplication_controllerに記述
+
+    def get_current_user
+      @user = current_user
     end
 
-    def correct_user_update
-      @user = User.find(params[:user][:id])
-      #debugger
-      unless current_user?(@user) then
-        flash[:danger] = "あなたは#{@user.nickname}ではありません"
-        redirect_to root_path
-      end
-    end
 end

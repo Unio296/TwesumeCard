@@ -130,8 +130,13 @@
   <%= fa_icon 'edit', text:" 編集" %>
   <% end %>
 
-  <%= link_to resume_path(@resume.slug), method: :delete, 
-                      data: {confirm: "このTWESUMEを削除します。よろしいですか？"}, class:"btn btn-danger mb-1" do%>
+  <%= link_to resume_path(@resume.slug), method: :delete, class:"btn btn-danger mb-1",
+          data: {
+            title: "削除前確認",
+            confirm: "このTWESUMEを削除します。よろしいですか？",
+            commit: "削除",
+            cancel: "キャンセル"
+          } do %>
   <%= fa_icon 'trash', text:" 削除" %>
   <% end %>
   <% end %>

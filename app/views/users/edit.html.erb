@@ -6,7 +6,7 @@
       <div class="row">
         <div class="input-wrapper p-4 col-lg-5 mx-auto">
 
-        <%= form_for @user,url: user_path(@user.nickname), html:{method: "patch"} do |f| %>
+        <%= form_for @user,url: users_path, html:{method: "patch"} do |f| %>
           <%= f.hidden_field :id %><%# ユーザの設定を変更する場合、idをキーにしてuserを検索する %>
 
           <%= f.label :name ,'ユーザ名'%>

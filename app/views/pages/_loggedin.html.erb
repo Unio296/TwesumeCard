@@ -3,7 +3,7 @@
   <div class="py-5">
     <h2 class="heading">TWESUME 作成</h2>
     <p>こちらからTWESUMEページとツイートするカードを作成できます</p>
-    <%= link_to '新規作成', new_user_resume_path(current_user.nickname) ,class:"btn btn-primary m-3" %>
+    <%= link_to '新規作成', new_users_resume_path(current_user.nickname) ,class:"btn btn-primary m-3" %>
   </div>
 </section>
 <section id="view-section" class="view-section">
@@ -39,8 +39,13 @@
                     <%= fa_icon 'edit', text:" 編集" %>
                   <% end %>
 
-                  <%= link_to resume_path(resume.slug), method: :delete, 
-                      data: {confirm: "このTWESUMEを削除します。よろしいですか？"}, class:"btn btn-danger mb-1" do%>
+                  <%= link_to resume_path(resume.slug), method: :delete, class:"btn btn-danger mb-1",
+                      data: {
+                        title: "削除前確認",
+                        confirm: "このTWESUMEを削除します。よろしいですか？",
+                        commit: "削除",
+                        cancel: "キャンセル"
+                      } do %>
                     <%= fa_icon 'trash', text:" 削除" %>
                   <% end %>
               </div>
@@ -58,7 +63,7 @@
     <div class="py-5">
     <h2 class="heading">ポートフォリオ投稿</h2>
     <p>投稿したポートフォリオはTWESUMEページの下部に表示されます</p>
-    <%= link_to '新規投稿', new_user_product_path(current_user.nickname) ,class:"btn btn-primary m-3" %>
+    <%= link_to '新規投稿', new_users_product_path(current_user.nickname) ,class:"btn btn-primary m-3" %>
   </div>
   </section>
   <section id="product-view" class="product-view">
@@ -110,8 +115,13 @@
             <%= link_to edit_product_path(product.slug), class:"btn btn-success" do %>
               <%= fa_icon 'edit',text:" 編集" %>
             <% end %>
-            <%= link_to product_path(product.slug), method: :delete, 
-                    data: {confirm: "このポートフォリオを削除します。よろしいですか？"}, class:"btn btn-danger" do%>
+            <%= link_to product_path(product.slug), method: :delete, class:"btn btn-danger" ,
+                    data: {
+                      title: "削除前確認",
+                      confirm: "このポートフォリオを削除します。よろしいですか？",
+                      commit: "削除",
+                      cancel: "キャンセル"
+                    } do %>
               <%= fa_icon 'trash', text:" 削除" %>
             <% end %>
 
