@@ -4,6 +4,7 @@ class Resume < ApplicationRecord
   default_scope -> { order(created_at: :desc) }                                 #新しい投稿から表示する順序付け
   
   before_create :set_create_slug
+  before_create :set_bitly_url        #短縮URL発行
   before_save {self.increment(:update_count,1)}
   validates :user_id, presence: true                                            #user_idの存在性
 
@@ -21,6 +22,18 @@ class Resume < ApplicationRecord
       if image.size > 1.megabytes
         errors.add(:image, "should be less than 1MB")
       end
+    end
+
+    # bitlyのurl生成
+    def set_bitly_url
+      case Rails.env
+      when "development"
+        host = "http://127.0.0.1:3000"
+      when "production"
+        host = "https://twesume.work"
+      end
+
+      self.bitly_url = Bitly.client.shorten("#{host}/resumes/#{self.slug}").short_url
     end
 
 end
