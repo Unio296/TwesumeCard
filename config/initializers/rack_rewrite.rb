@@ -1,4 +1,4 @@
-# twesume.herokuapp.comのアクセスをtwesume.workにリダイレクトさせる
+# twesume.herokuapp.comのアクセスをtwesumes.netにリダイレクトさせる
 
 if ENV['RACK_ENV'] == 'production'
   TwesumeCard::Application.config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
