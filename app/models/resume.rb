@@ -30,7 +30,7 @@ class Resume < ApplicationRecord
       when "development"
         host = "http://127.0.0.1:3000"
       when "production"
-        host = "https://twesume.work"
+        host = "https://twesumes.net"
       end
 
       self.bitly_url = Bitly.client.shorten("#{host}/resumes/#{self.slug}").short_url
