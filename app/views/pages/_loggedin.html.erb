@@ -31,7 +31,7 @@
               <div class="card-footer">
                 <%= link_to 'TWESUMEページ',resume_path(resume.slug), class:"btn btn-primary mb-2" %><br>
 
-                  <%= link_to "https://twitter.com/share?text=#{resume.job_type}の転職先を探しています。%20%23hiyokonitsuduke%20%23Twitter転職&url=#{resume.bitly_url}?u=#{resume.update_count}", class:"btn btn-info mb-1", target:["_blank"] do %>
+                  <%= link_to "https://twitter.com/share?text=#{resume.job_type}の転職先を探しています。%20%23hiyokonitsuduke%20%23Twitter転職&url=#{resume.bitly_url}", class:"btn btn-info mb-1", target:["_blank"] do %>
                     <%= fa_icon 'twitter',text:" 投稿" %>
                   <% end %>
 

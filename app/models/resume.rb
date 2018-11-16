@@ -3,9 +3,11 @@ class Resume < ApplicationRecord
   belongs_to :user                                                              #ユーザに所属する関連付け
   default_scope -> { order(created_at: :desc) }                                 #新しい投稿から表示する順序付け
   
-  before_create :set_create_slug
-  before_create :set_bitly_url        #短縮URL発行
   before_save {self.increment(:update_count,1)}
+  before_create :set_create_slug      #作成時のみ発行
+  before_create :set_bitly_url        #短縮URL発行
+  before_update :set_bitly_url        #短縮URL更新
+  
   validates :user_id, presence: true                                            #user_idの存在性
 
   private
@@ -33,7 +35,7 @@ class Resume < ApplicationRecord
         host = "https://twesumes.net"
       end
 
-      self.bitly_url = Bitly.client.shorten("#{host}/resumes/#{self.slug}").short_url
+      self.bitly_url = Bitly.client.shorten("#{host}/resumes/#{self.slug}?u=#{self.update_count}").short_url
     end
 
 end

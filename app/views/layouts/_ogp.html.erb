@@ -3,7 +3,7 @@
 
 <meta name="twitter:card" content='summary_large_image' />
 <meta name="twitter:site" content="<%= "@#{@resume.user.nickname}" %>" />
-<meta property="og:url" content="<%= resume_url(@resume.id) %>" />
+<meta property="og:url" content="<%= resume_url(@resume.slug) %>" />
 <meta property="og:title" content="<%= "#{@resume.user.name}のTWESUME ~Twitter履歴書~"%>" />
 <meta property="og:description" content="<%= "#{@resume.user.name}が上記画像の条件で転職先を探しています。詳細はリンク先へ。"%>" />
 <meta property="og:image" content="<%= @resume.image.url %>" />
